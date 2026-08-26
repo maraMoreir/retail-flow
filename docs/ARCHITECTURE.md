@@ -1,7 +1,8 @@
 # RetailFlow Architecture
 
-This describes the system as it actually exists today (Phase 1: Foundation), not
-the full target design — see [Status](#status-whats-real-vs-planned) at the
+This describes the system as it actually exists today (Phase 2: Architecture &
+Domain Design, building on Phase 1's foundation), not the full target design —
+see [Status](#status-whats-real-vs-planned) at the
 bottom for exactly where the line is. For *why* particular decisions were made,
 see [docs/ADRs](ADRs/README.md); this document is the map, the ADRs are the
 reasoning.
@@ -60,14 +61,43 @@ separate, read-only `DbContext` — never the write-side aggregates.
 ## Bounded contexts
 
 The target design (per the original project plan) is five bounded contexts:
-**Sales**, **Inventory**, **Fiscal**, **Notification**, **Reporting**. Phase 1
-only stands up the shared kernel (`RetailFlow.Domain`/`Application`) they'll all
-build on, plus `RetailFlow.Reporting` as its own project since it's genuinely
-different (no write model at all). The other four contexts will live as
-namespaces/folders inside `Domain`/`Application` initially (e.g.
-`RetailFlow.Domain.Sales`) rather than as separate assemblies — splitting them
-into physically separate projects is a deferred decision, made if/when a context
-actually needs to deploy or scale independently, not before.
+**Sales**, **Inventory**, **Fiscal**, **Notification**, **Reporting**.
+`RetailFlow.Reporting` is its own project since it's genuinely different (no
+write model at all — see [CQRS](#cqrs--eventual-consistency) below). The other
+four now exist as namespaces/folders inside `RetailFlow.Domain`
+(`RetailFlow.Domain.Sales`, `.Inventory`, `.Fiscal`, `.Notification`) rather than
+as separate assemblies — splitting them into physically separate projects is a
+deferred decision, made if/when a context actually needs to deploy or scale
+independently, not before. Each namespace currently holds that context's domain
+event contracts (see [below](#domain-events)) and any payload-shape records they
+carry; the aggregates that will *raise* those events (`Sale`, `Product`, ...)
+are Phase 3 work — see [Status](#status-whats-real-vs-planned).
+
+Two value objects are shared kernel, living in `RetailFlow.Domain.Common.ValueObjects`
+rather than any one context, because more than one context needs them without
+depending on each other: `Money` (amount + currency; Sales prices with it,
+Inventory costs with it, Fiscal reports tax amounts with it) and `ProductCode`
+(a normalized product identifier every context can reference).
+
+## Domain events
+
+The vocabulary every context communicates through — each a `record` deriving
+from `RetailFlow.Domain.Common.DomainEvent`, immutable, past-tense. These are
+contracts other bounded contexts and `RetailFlow.Worker` react to; nothing that
+raises them exists yet (see [Status](#status-whats-real-vs-planned)).
+
+| Event | Context | Raised when |
+|---|---|---|
+| `SaleCreatedEvent` | Sales | A sale is opened, before payment |
+| `SaleCompletedEvent` | Sales | Payment confirmed — carries the final `Money` total and line items |
+| `SaleCancelledEvent` | Sales | A sale is cancelled, directly or as saga compensation |
+| `InventoryReservedEvent` | Inventory | Stock held for every line of a sale |
+| `InventoryReleasedEvent` | Inventory | A reservation given back (cancellation or compensation) |
+| `FiscalGeneratedEvent` | Fiscal | A fiscal document (NFC-e/NF-e) is authorized |
+| `NotificationSentEvent` | Notification | A notification is actually dispatched |
+
+See [ADR-001](ADRs/001-saga-pattern-for-transactions.md) for how these chain
+together through the create-sale saga's happy and compensating paths.
 
 ## Messaging: Wolverine
 
@@ -95,6 +125,33 @@ All of this is configured once, in
 via `AddRetailFlowInfrastructure(this IHostApplicationBuilder builder)` — called
 identically from both `RetailFlow.Api` and `RetailFlow.Worker`'s `Program.cs`, so
 the two hosts cannot drift out of sync on how they talk to Postgres/RabbitMQ/Redis.
+
+## CQRS & eventual consistency
+
+`RetailFlow.Reporting` is updated asynchronously from the same domain events the
+outbox delivers, not synchronously inside the write transaction — see
+[ADR-004](ADRs/004-cqrs-eventual-consistency.md) for the full reasoning. Target
+consistency window: 2-5 seconds between a write committing and the read model
+reflecting it. Two consequences worth knowing before writing a Reporting
+projection handler: it must be **idempotent** (the outbox is at-least-once
+delivery, not exactly-once — expect to see the same event twice sometimes), and
+it must not assume "read your own write" — a client that just completed a sale
+may not see it on the dashboard for a few seconds.
+
+## Resilience
+
+Three policies from the project plan, wired at the infrastructure level so
+individual handlers don't have to think about them:
+
+| Concern | Policy | Where |
+|---|---|---|
+| Database | 3 retries, exponential backoff (Npgsql `EnableRetryOnFailure`) | Both `RetailFlowDbContext` and `ReportingDbContext` registrations, in `RetailFlow.Infrastructure`/`RetailFlow.Reporting`'s `DependencyInjection.cs` |
+| Message handling | 5 retries, growing cooldown, then Wolverine's error queue | `opts.OnException<Exception>().RetryWithCooldown(...)` in `RetailFlow.Infrastructure/DependencyInjection.cs` |
+| Outbound HTTP to external systems | Retry (3x, exponential) → circuit breaker (50% failure ratio, 30s sampling/break) → 30s timeout | [`HttpClientResilienceExtensions.AddRetailFlowResilience()`](../src/RetailFlow.Infrastructure/Resilience/HttpClientResilienceExtensions.cs) — not yet called anywhere, since no outbound HTTP client (e.g. the Fiscal authority) exists yet |
+
+The HTTP pipeline's circuit-breaker behavior is proven against a real (fake-backed)
+`HttpClient`, not just configured, in
+[`RetailFlow.ChaosTests/HttpClientResilienceTests.cs`](../tests/RetailFlow.ChaosTests/HttpClientResilienceTests.cs).
 
 ## Security
 
@@ -177,17 +234,24 @@ Seq's UI is at `http://localhost:8081`, RabbitMQ's management UI at
 
 Everything above this line describes code that exists, builds, and is tested —
 see [`RetailFlow.IntegrationTests`](../tests/RetailFlow.IntegrationTests) for the
-end-to-end proof (it boots the real API host against real, disposable
-Postgres/RabbitMQ/Redis containers). What's explicitly **not** built yet:
+end-to-end infrastructure proof (it boots the real API host against real,
+disposable Postgres/RabbitMQ/Redis containers), and
+[`RetailFlow.ChaosTests`](../tests/RetailFlow.ChaosTests) for the resilience
+policies. What's explicitly **not** built yet:
 
-- Any bounded-context business logic (no `Sale`, `Product`, etc. — Phase 1 is the
-  foundation they'll sit on, not the contexts themselves).
-- Saga orchestration (no multi-step distributed transaction exists yet to
-  orchestrate).
+- Bounded-context aggregates and their behavior (no `Sale`, `Product`, etc. —
+  Phase 2 defined the *vocabulary* (events, shared value objects) they'll use;
+  Phase 3 builds the aggregates themselves, which is also when the domain events
+  above get an actual publisher and the Reporting/Saga mechanisms described here
+  get something real to react to).
+- The `CreateSaleSaga` class itself (design recorded in
+  [ADR-001](ADRs/001-saga-pattern-for-transactions.md); no code yet — there's no
+  `SaleCompletedEvent` publisher to trigger it).
+- Any `RetailFlow.Reporting` projection handler (design recorded in
+  [ADR-004](ADRs/004-cqrs-eventual-consistency.md); same reason).
 - OpenTelemetry/Prometheus/Grafana observability.
 - SonarQube, OWASP dependency scanning, Dependabot, issue/PR templates — skipped
   for this pass since they need external accounts/tokens; the CI workflow that
   exists (`.github/workflows/ci.yml`) is restore/build/test only.
 - `docs/SECURITY.md`, `docs/TESTING.md`, `docs/DEPLOYMENT.md`, `docs/API.md`,
-  runbooks — this file and the two ADRs above are the documentation footprint
-  for now.
+  runbooks — this file and the ADRs above are the documentation footprint for now.

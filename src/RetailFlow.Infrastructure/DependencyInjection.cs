@@ -1,3 +1,4 @@
+using JasperFx.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ using RetailFlow.Shared.Time;
 using StackExchange.Redis;
 using Wolverine;
 using Wolverine.EntityFrameworkCore;
+using Wolverine.ErrorHandling;
 using Wolverine.FluentValidation;
 using Wolverine.Postgresql;
 using Wolverine.RabbitMQ;
@@ -60,13 +62,32 @@ public static class DependencyInjection
             // See docs/ADRs/002-outbox-pattern-for-reliability.md.
             opts.PersistMessagesWithPostgresql(postgresConnectionString);
 
+            // "Database: retry 3x, exponential backoff" resilience policy from the
+            // project plan - applies to every EF Core call against this DbContext,
+            // not just Wolverine's own transactional-outbox writes.
             opts.Services.AddDbContextWithWolverineIntegration<RetailFlowDbContext>(
-                db => db.UseNpgsql(postgresConnectionString));
+                db => db.UseNpgsql(postgresConnectionString, npgsql => npgsql.EnableRetryOnFailure(
+                    maxRetryCount: 3, maxRetryDelay: TimeSpan.FromSeconds(5), errorCodesToAdd: null)));
 
             opts.UseEntityFrameworkCoreTransactions();
             opts.Policies.AutoApplyTransactions();
 
             opts.UseFluentValidation();
+
+            // Message-queue resilience: a transient failure in a handler (e.g. a
+            // brief Postgres blip) gets 5 attempts with growing backoff before
+            // Wolverine gives up and moves the message to its error queue - the
+            // "Message queue: 5 retries, exponential backoff" policy from the
+            // project plan. Sagas/handlers that need different behavior for a
+            // specific exception type can add a more specific OnException<T>()
+            // policy - the most specific matching policy wins.
+            opts.OnException<Exception>()
+                .RetryWithCooldown(
+                    100.Milliseconds(),
+                    250.Milliseconds(),
+                    500.Milliseconds(),
+                    1.Seconds(),
+                    2.Seconds());
 
             // WolverineFx.RuntimeCompilation (referenced above) auto-registers here
             // and compiles handler-dispatch code with Roslyn on first use - fine for

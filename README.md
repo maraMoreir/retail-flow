@@ -26,11 +26,13 @@ maturity (resilience, security, observability, testing depth) a platform team
 would actually expect in production, documented well enough that someone else
 could pick it up and keep building.
 
-**Current status**: Phase 1 (Foundation) — see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned)
+**Current status**: Phase 2 (Architecture & Domain Design) — see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned)
 for exactly what's real vs. planned. Short version: the architecture, messaging,
-security, and testing *scaffolding* all exist and are verified end-to-end; the
-actual business logic (Sales, Inventory, Fiscal, Notification) hasn't been built
-yet.
+security, resilience policies, and testing scaffolding all exist and are
+verified end-to-end; the domain event contracts and shared value objects that
+define each bounded context's vocabulary now exist too. The actual business
+logic (Sales, Inventory, Fiscal, Notification aggregates, the create-sale saga)
+hasn't been built yet — that's Phase 3.
 
 ---
 
@@ -50,6 +52,17 @@ yet.
   original plan was written. One MIT-licensed library now covers in-process
   dispatch, the RabbitMQ transport, Sagas, and the outbox — see
   [ADR-006](docs/ADRs/006-messaging-and-mediator-library-choice.md).
+- **Domain events** for all five bounded contexts (`SaleCompletedEvent`,
+  `InventoryReservedEvent`, `FiscalGeneratedEvent`, ...) and shared value objects
+  (`Money`, `ProductCode`) already exist as the vocabulary Phase 3's aggregates
+  will use — see [docs/ARCHITECTURE.md § Domain events](docs/ARCHITECTURE.md#domain-events).
+- **Saga design** for the create-sale flow, correlated on `SaleId` via Wolverine's
+  `Saga` base class — see [ADR-001](docs/ADRs/001-saga-pattern-for-transactions.md)
+  (design only; no aggregate exists yet to trigger it).
+- **Resilience policies** wired at the infrastructure level: DB retry, message
+  retry, and an HTTP circuit breaker for future outbound calls (Fiscal authority,
+  etc.) — proven against real failure scenarios in `RetailFlow.ChaosTests`, not
+  just configured.
 - **Keycloak** for AuthN/OIDC, with policy-based RBAC (`Manager`, `Customer`,
   `AdminOnly`) backed by realm roles.
 
@@ -97,7 +110,9 @@ Run `just` with no arguments (or open the `justfile`) for the full recipe list.
 ```
 RetailFlow/
 ├── src/
-│   ├── RetailFlow.Domain/          # Entities, value objects, domain events. Zero dependencies.
+│   ├── RetailFlow.Domain/          # Zero dependencies. Common/ (Entity, Money, ProductCode) +
+│   │                                #   Sales/Inventory/Fiscal/Notification/ (domain events - no
+│   │                                #   aggregates yet, see docs/ARCHITECTURE.md#status)
 │   ├── RetailFlow.Application/     # Commands, queries, validators. No Wolverine reference.
 │   ├── RetailFlow.Infrastructure/  # EF Core, Wolverine wiring, Redis, health checks.
 │   ├── RetailFlow.Shared/          # Correlation IDs, clock, Result<T> - cross-cutting, no Domain ref.
@@ -121,8 +136,8 @@ RetailFlow/
 └── justfile
 ```
 
-Sales/Inventory/Fiscal/Notification bounded contexts will live as namespaces
-inside `Domain`/`Application` initially (not separate assemblies) — see
+Sales/Inventory/Fiscal/Notification bounded contexts live as namespaces inside
+`Domain`/`Application` (not separate assemblies) — see
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#bounded-contexts) for why.
 
 ---
@@ -148,12 +163,15 @@ inside `Domain`/`Application` initially (not separate assemblies) — see
 
 ## Roadmap
 
-Everything below Phase 1 is planned, not built — tracked as it lands in
+Everything below is planned, not built — tracked as it lands in
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned) and
 [docs/ADRs](docs/ADRs/README.md).
 
-- Sales, Inventory, Fiscal, Notification bounded contexts (actual business logic)
-- Saga orchestration for the create-sale flow
+- Sales, Inventory, Fiscal, Notification bounded-context aggregates (actual
+  business logic - the domain events and shared value objects they'll use
+  already exist, see [Architecture at a glance](#architecture-at-a-glance))
+- The `CreateSaleSaga` implementation (design already recorded in ADR-001)
+- Reporting projection handlers (design already recorded in ADR-004)
 - OpenTelemetry distributed tracing, Prometheus metrics, Grafana dashboards
 - Audit trail, PII encryption at rest, `docs/SECURITY.md`
 - SonarQube / OWASP dependency scanning / Dependabot
