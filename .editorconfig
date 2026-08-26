@@ -1,0 +1,68 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{yml,yaml,json,js}]
+indent_size = 2
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+
+[*.cs]
+indent_size = 4
+csharp_using_directive_placement = outside_namespace:warning
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = true:suggestion
+
+# 'var' when the type is obvious from the right-hand side; explicit type otherwise.
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+dotnet_sort_system_directives_first = true
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_predefined_type_for_locals_parameters_members = true:warning
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+dotnet_code_quality_unused_parameters = all:suggestion
+
+# Naming: interfaces start with I, private fields are _camelCase.
+dotnet_naming_rule.interfaces_start_with_i.severity = warning
+dotnet_naming_rule.interfaces_start_with_i.symbols = interface_symbol
+dotnet_naming_rule.interfaces_start_with_i.style = i_prefix_style
+dotnet_naming_symbols.interface_symbol.applicable_kinds = interface
+dotnet_naming_style.i_prefix_style.required_prefix = I
+dotnet_naming_style.i_prefix_style.capitalization = pascal_case
+
+
+# private static (readonly) fields: PascalCase, no underscore - conventionally
+# treated like constants (e.g. `private static readonly HttpClient Client = new();`),
+# checked first since naming rules apply in file order and this is the more
+# specific of the two.
+dotnet_naming_rule.private_static_fields_pascal_case.severity = warning
+dotnet_naming_rule.private_static_fields_pascal_case.symbols = private_static_field_symbol
+dotnet_naming_rule.private_static_fields_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.private_static_field_symbol.applicable_kinds = field
+dotnet_naming_symbols.private_static_field_symbol.applicable_accessibilities = private
+dotnet_naming_symbols.private_static_field_symbol.required_modifiers = static
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# private INSTANCE fields: _camelCase.
+dotnet_naming_rule.private_fields_underscore_camel_case.severity = warning
+dotnet_naming_rule.private_fields_underscore_camel_case.symbols = private_field_symbol
+dotnet_naming_rule.private_fields_underscore_camel_case.style = underscore_camel_case_style
+dotnet_naming_symbols.private_field_symbol.applicable_kinds = field
+dotnet_naming_symbols.private_field_symbol.applicable_accessibilities = private
+dotnet_naming_style.underscore_camel_case_style.required_prefix = _
+dotnet_naming_style.underscore_camel_case_style.capitalization = camel_case
+
+[*.{csproj,props,targets}]
+indent_size = 2

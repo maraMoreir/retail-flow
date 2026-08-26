@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RetailFlow.Domain/RetailFlow.Domain.csproj" />
+    <Project Path="src/RetailFlow.Application/RetailFlow.Application.csproj" />
+    <Project Path="src/RetailFlow.Infrastructure/RetailFlow.Infrastructure.csproj" />
+    <Project Path="src/RetailFlow.Shared/RetailFlow.Shared.csproj" />
+    <Project Path="src/RetailFlow.Reporting/RetailFlow.Reporting.csproj" />
+    <Project Path="src/RetailFlow.Api/RetailFlow.Api.csproj" />
+    <Project Path="src/RetailFlow.Worker/RetailFlow.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RetailFlow.UnitTests/RetailFlow.UnitTests.csproj" />
+    <Project Path="tests/RetailFlow.IntegrationTests/RetailFlow.IntegrationTests.csproj" />
+    <Project Path="tests/RetailFlow.ArchitectureTests/RetailFlow.ArchitectureTests.csproj" />
+    <Project Path="tests/RetailFlow.ContractTests/RetailFlow.ContractTests.csproj" />
+    <Project Path="tests/RetailFlow.ChaosTests/RetailFlow.ChaosTests.csproj" />
+    <Project Path="tests/RetailFlow.PerformanceTests/RetailFlow.PerformanceTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,459 +1,166 @@
 # RetailFlow
 
-> A production-inspired distributed retail platform built with .NET 10, demonstrating modern enterprise architecture, event-driven communication, parallel processing, batch operations, and full observability.
+> A staff-engineer-grade distributed retail platform built with .NET 10 — Clean
+> Architecture, DDD, CQRS, the transactional outbox pattern, and full local
+> observability, built as a reference implementation other teams can learn from.
 
 ![.NET](https://img.shields.io/badge/.NET-10-blueviolet)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Message_Broker-orange)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![Redis](https://img.shields.io/badge/Redis-Cache-red)
+![Keycloak](https://img.shields.io/badge/Keycloak-AuthN%2FAuthZ-blueviolet)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-# Overview
+## Overview
 
-RetailFlow is an enterprise retail platform inspired by real-world Point of Sale (POS) and ERP systems.
+RetailFlow is an enterprise retail platform inspired by real-world Point of Sale
+(POS) and ERP systems: sales, inventory, fiscal documents, notifications, and
+reporting, coordinated through asynchronous messaging with a guaranteed-delivery
+outbox instead of the request/response calls a simpler CRUD app would use.
 
-The solution demonstrates how modern retail systems handle sales, inventory, fiscal operations, notifications, reporting, and batch imports using distributed services and asynchronous messaging.
+The goal isn't a feature checklist — it's a reference for the operational
+maturity (resilience, security, observability, testing depth) a platform team
+would actually expect in production, documented well enough that someone else
+could pick it up and keep building.
 
-Instead of building a simple CRUD application, RetailFlow focuses on production-ready backend architecture, scalability, resiliency, and observability.
-
----
-
-# Features
-
-- Sales Management
-- Inventory Control
-- Fiscal Processing (NFC-e / NF-e simulation)
-- Batch Import
-- RabbitMQ Event Bus
-- Parallel Processing
-- Distributed Workers
-- Real-time Monitoring
-- Dashboard
-- JWT Authentication
-- OpenTelemetry
-- Prometheus
-- Grafana
-- Health Checks
-- Docker
-- CI/CD
+**Current status**: Phase 1 (Foundation) — see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned)
+for exactly what's real vs. planned. Short version: the architecture, messaging,
+security, and testing *scaffolding* all exist and are verified end-to-end; the
+actual business logic (Sales, Inventory, Fiscal, Notification) hasn't been built
+yet.
 
 ---
 
-# System Architecture
+## Architecture at a glance
 
+- **Clean Architecture**, enforced at build time — `RetailFlow.Domain` has zero
+  dependencies, and [`RetailFlow.ArchitectureTests`](tests/RetailFlow.ArchitectureTests)
+  fails the build if any layer starts depending on the wrong thing.
+- **CQRS**: `RetailFlow.Reporting` is a genuinely separate read side (its own
+  `DbContext`, no reference to `RetailFlow.Domain`) rather than the same
+  entities with a different label.
+- **Transactional outbox**: an aggregate's new state and the domain event it
+  raised are written to Postgres in one transaction; publishing to RabbitMQ
+  happens afterward, durably, with retry — see
+  [ADR-002](docs/ADRs/002-outbox-pattern-for-reliability.md).
+- **Wolverine**, not MediatR + MassTransit: both went commercial after the
+  original plan was written. One MIT-licensed library now covers in-process
+  dispatch, the RabbitMQ transport, Sagas, and the outbox — see
+  [ADR-006](docs/ADRs/006-messaging-and-mediator-library-choice.md).
+- **Keycloak** for AuthN/OIDC, with policy-based RBAC (`Manager`, `Customer`,
+  `AdminOnly`) backed by realm roles.
+
+Full detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Decision records:
+[docs/ADRs](docs/ADRs/README.md).
+
+---
+
+## Getting started
+
+Prerequisites: [.NET 10 SDK](https://dotnet.microsoft.com/download), Docker
+Desktop (or another Docker engine). [`just`](https://github.com/casey/just) is
+optional — every recipe in the `justfile` is a plain `dotnet`/`docker` command
+underneath.
+
+```bash
+just up          # Postgres, RabbitMQ, Redis, Seq, Keycloak
+just test        # dotnet test RetailFlow.slnx - includes a real Testcontainers-backed
+                  # boot of the API against disposable Postgres/RabbitMQ/Redis
+just run-api      # dotnet run --project src/RetailFlow.Api
 ```
 
-+------------------------+
-\| POS / Web Application |
-+-----------+------------+
-|
-v
-+------------------------+
-\| Retail API Gateway |
-+-----------+------------+
-|
-+----------------+----------------+
-| |
-v v
+Then:
+- API: `http://localhost:5xxx` (see the port `dotnet run` prints), health checks
+  at `/health`, `/health/live`, `/health/ready`.
+- Seq (logs): `http://localhost:8081`
+- RabbitMQ management: `http://localhost:15672` (guest/guest)
+- Keycloak admin console: `http://localhost:8080` (admin/admin)
 
-Sales Inventory
-Service Service
+Get a bearer token with one of the seeded demo users
+(`admin.demo` / `customer.demo`, password `retailflow-dev`):
 
-| |
-
-+----------------+----------------+
-|
-RabbitMQ Event Bus
-|
-+--------+---------+---------+---------+
-| | | |
-v v v v
-
-Fiscal Notification Reporting Worker
-Service Service Service Service
-
-|
-v
-
-PostgreSQL
-
-|
-v
-
-Admin Dashboard
-
+```bash
+curl -X POST http://localhost:8080/realms/retailflow/protocol/openid-connect/token \
+  -d client_id=retailflow-api -d grant_type=password \
+  -d username=admin.demo -d password=retailflow-dev
 ```
 
----
-
-# Services
-
-## Sales API
-
-Responsible for sales operations.
-
-### Responsibilities
-
-- Create sales
-- Apply discounts
-- Calculate totals
-- Register payments
-- Publish SaleCompleted events
+Run `just` with no arguments (or open the `justfile`) for the full recipe list.
 
 ---
 
-## Inventory Service
-
-Responsible for stock management.
-
-### Responsibilities
-
-- Reserve products
-- Update inventory
-- Stock adjustments
-- Product availability
-
----
-
-## Fiscal Service
-
-Simulates the fiscal workflow found in enterprise systems.
-
-### Responsibilities
-
-- Generate NFC-e
-- Generate NF-e
-- Fiscal validation
-- XML generation
-- Authorization simulation
-
----
-
-## Notification Service
-
-Handles asynchronous notifications.
-
-### Responsibilities
-
-- Email
-- SMS (future)
-- Push notifications
-- Webhooks
-
----
-
-## Reporting Service
-
-Read model optimized for dashboards.
-
-### Responsibilities
-
-- Sales KPIs
-- Revenue
-- Products
-- Inventory indicators
-- Daily reports
-
----
-
-## Batch Import Service
-
-Designed to process very large datasets.
-
-Supports importing:
-
-- Products
-- Customers
-- Prices
-- Inventory
-- Suppliers
-
-Imports are automatically divided into chunks and processed in parallel.
-
----
-
-## Worker Service
-
-Consumes RabbitMQ events.
-
-Processes:
-
-- Inventory updates
-- Fiscal generation
-- Notifications
-- Reporting
-- Audit logs
-
-Workers are stateless and horizontally scalable.
-
----
-
-## Admin Dashboard
-
-Centralized operational dashboard.
-
-Features:
-
-- Batch progress
-- Queue monitoring
-- Worker status
-- Health Checks
-- Metrics
-- Distributed tracing
-- Logs
-
----
-
-# Event Flow
+## Project structure
 
 ```
-
-Sale Created
-
-↓
-
-Sales API
-
-↓
-
-SaleCompleted Event
-
-↓
-
-RabbitMQ
-
-↓
-
-+-------------+-------------+--------------+
-
-Inventory Fiscal Reporting
-
-Worker Worker Worker
-
-↓
-
-Database
-
-↓
-
-Dashboard
-
+RetailFlow/
+├── src/
+│   ├── RetailFlow.Domain/          # Entities, value objects, domain events. Zero dependencies.
+│   ├── RetailFlow.Application/     # Commands, queries, validators. No Wolverine reference.
+│   ├── RetailFlow.Infrastructure/  # EF Core, Wolverine wiring, Redis, health checks.
+│   ├── RetailFlow.Shared/          # Correlation IDs, clock, Result<T> - cross-cutting, no Domain ref.
+│   ├── RetailFlow.Reporting/       # CQRS read side. Own DbContext, no Domain reference.
+│   ├── RetailFlow.Api/             # ASP.NET Core minimal API host.
+│   └── RetailFlow.Worker/          # Background host (event consumers, projections, sagas).
+├── tests/
+│   ├── RetailFlow.UnitTests/
+│   ├── RetailFlow.IntegrationTests/   # Testcontainers: real Postgres/RabbitMQ/Redis
+│   ├── RetailFlow.ArchitectureTests/  # NetArchTest - enforces the dependency rules above
+│   ├── RetailFlow.ContractTests/      # Pact - wired, no consumer/provider pair yet
+│   ├── RetailFlow.ChaosTests/         # Polly v8 resilience pipelines
+│   └── RetailFlow.PerformanceTests/   # BenchmarkDotNet
+├── docs/
+│   ├── ARCHITECTURE.md
+│   └── ADRs/
+├── docker/keycloak/realm-export.json
+├── docker-compose.yml
+├── Directory.Build.props           # Shared project settings
+├── Directory.Packages.props        # Central Package Management - one version per package
+└── justfile
 ```
 
----
-
-# Batch Processing
-
-RetailFlow supports importing hundreds of thousands of records.
-
-```
-
-CSV
-
-↓
-
-Batch Import
-
-↓
-
-Split
-
-↓
-
-RabbitMQ
-
-↓
-
-Parallel Workers
-
-↓
-
-Database
-
-```
-
-Parallel processing uses:
-
-- Parallel.ForEachAsync
-- Channels
-- SemaphoreSlim
+Sales/Inventory/Fiscal/Notification bounded contexts will live as namespaces
+inside `Domain`/`Application` initially (not separate assemblies) — see
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#bounded-contexts) for why.
 
 ---
 
-# Health Checks
+## Technology stack
 
-RetailFlow exposes production-ready endpoints.
-
-```
-
-/health
-
-/health/live
-
-/health/ready
-
-```
-
-Checks include:
-
-- PostgreSQL
-- RabbitMQ
-- Redis
-- Worker availability
-- Disk
-- Memory
+| Concern | Choice |
+|---|---|
+| Runtime | .NET 10, ASP.NET Core Minimal APIs |
+| Persistence | PostgreSQL, EF Core 10 |
+| Messaging / CQRS dispatch / Outbox / Saga | [Wolverine](https://wolverinefx.net/) (MIT) |
+| Cache | Redis |
+| AuthN/AuthZ | Keycloak (OIDC), policy-based RBAC |
+| Validation | FluentValidation |
+| Logging | Serilog → Seq |
+| Resilience | Polly v8 |
+| Architecture | Clean Architecture, DDD, CQRS |
+| Testing | xUnit, NetArchTest, Testcontainers, PactNet, BenchmarkDotNet |
+| Local infra | Docker Compose |
+| CI | GitHub Actions |
 
 ---
 
-# Observability
+## Roadmap
 
-## Metrics
+Everything below Phase 1 is planned, not built — tracked as it lands in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned) and
+[docs/ADRs](docs/ADRs/README.md).
 
-- Sales per minute
-- Queue length
-- Processing time
-- Failed messages
-- Inventory updates
-- Worker throughput
-
-Powered by:
-
-- Prometheus
-- Grafana
+- Sales, Inventory, Fiscal, Notification bounded contexts (actual business logic)
+- Saga orchestration for the create-sale flow
+- OpenTelemetry distributed tracing, Prometheus metrics, Grafana dashboards
+- Audit trail, PII encryption at rest, `docs/SECURITY.md`
+- SonarQube / OWASP dependency scanning / Dependabot
+- Kubernetes manifests, CI/CD image publishing
 
 ---
 
-## Distributed Tracing
+## License
 
-Every request shares the same TraceId across:
-
-- API
-- RabbitMQ
-- Workers
-- Database
-
-Powered by OpenTelemetry.
-
----
-
-## Logging
-
-Structured logs with:
-
-- TraceId
-- UserId
-- SaleId
-- WorkerId
-- Processing duration
-
-Visualized using Seq.
-
----
-
-# Technology Stack
-
-## Backend
-
-- .NET 10
-- ASP.NET Core
-- Minimal APIs
-- Entity Framework Core
-- PostgreSQL
-- RabbitMQ
-- Redis
-
-## Architecture
-
-- Clean Architecture
-- DDD
-- CQRS
-- SOLID
-- Event Driven Architecture
-- Vertical Slice Architecture
-
-## Infrastructure
-
-- Docker
-- Docker Compose
-- GitHub Actions
-- OpenTelemetry
-- Prometheus
-- Grafana
-- Serilog
-- Polly
-
----
-
-# Project Structure
-
-```
-
-src/
-
-RetailFlow.Api
-
-RetailFlow.Domain
-
-RetailFlow.Application
-
-RetailFlow.Infrastructure
-
-RetailFlow.Workers
-
-RetailFlow.Reporting
-
-RetailFlow.BatchImport
-
-RetailFlow.Admin
-
-tests/
-
-RetailFlow.UnitTests
-
-RetailFlow.IntegrationTests
-
-RetailFlow.ArchitectureTests
-
-RetailFlow.PerformanceTests
-
-```
-
----
-
-# Future Roadmap
-
-- Payment Gateway
-- Pix Integration
-- Loyalty Program
-- Coupons
-- Promotions Engine
-- Multi-store Support
-- Multi-tenancy
-- Event Sourcing
-- Kubernetes Deployment
-- Saga Pattern
-- Outbox Pattern
-- Cache Invalidation
-- Elasticsearch
-
----
-
-# Design Principles
-
-- Clean Architecture
-- Domain Driven Design
-- Event Driven Architecture
-- High Cohesion
-- Low Coupling
-- SOLID
-- Production First
-- Cloud Ready
-
----
-
-# License
-
-MIT
+MIT — see [LICENSE](LICENSE).

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <!-- AbstractValidator<T> base class for command/query validators. Registration
+         itself is owned by Wolverine's UseFluentValidation() - see
+         RetailFlow.Infrastructure/Messaging/DependencyInjection.cs. -->
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RetailFlow.Domain\RetailFlow.Domain.csproj" />
+    <ProjectReference Include="..\RetailFlow.Shared\RetailFlow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
