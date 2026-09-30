@@ -1,4 +1,4 @@
-<mxfile host="Electron" pages="5">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2" pages="8">
   <diagram name="Home" id="G5FfMA2sO6NSXVe8SjTU">
     <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
       <root>
@@ -422,133 +422,451 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="ERP Connector" id="eE6n8UGbs5jBR7afq6Ti">
-    <mxGraphModel dx="1585" dy="963" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+  <diagram name="ERP Connector - Capability Model" id="dPGvtmwmxtlkhlCB4BGY">
+    <mxGraphModel dx="1489" dy="894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="Component Diagram - ERP Connector (camada de anticorrupção)" vertex="1">
+        <mxCell id="capn1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="ERP Connector por capacidade (ADR-0024)&amp;nbsp;" vertex="1">
           <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#6600CC;fontSize=14;spacingTop=4;" value="RetailFlow.ErpConnector" vertex="1">
+        <mxCell id="capn2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#FF0000;fontSize=14;spacingTop=4;" value="RetailFlow.ErpConnector" vertex="1">
           <mxGeometry height="830" width="980" x="320" y="110" as="geometry" />
         </mxCell>
-        <mxCell id="n3" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sync Orchestrator&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Agenda e coordena ciclos&lt;br&gt;por cliente e por entidade&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="40" y="60" as="geometry" />
+        <mxCell id="capn3" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sync Orchestrator&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Agenda ciclos por cliente&lt;br&gt;e por entidade&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="40" y="55" as="geometry" />
         </mxCell>
-        <mxCell id="n4" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Canonical Model&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Modelo interno do PDV.&lt;br&gt;Nenhum ERP vaza para dentro&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="350" y="60" as="geometry" />
+        <mxCell id="capn4" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Capability Resolver&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[na INICIALIZAÇÃO]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Lê as capacidades e monta um&lt;br&gt;pipeline concreto. Depois disso,&lt;br&gt;nenhum if de capacidade&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="350" y="55" as="geometry" />
         </mxCell>
-        <mxCell id="n5" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Adapter Port&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[interface]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Contrato que todo&lt;br&gt;adaptador implementa&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="660" y="60" as="geometry" />
+        <mxCell id="capn5" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Canonical Model&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[versionado]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Domínio do PDV, não a união&lt;br&gt;dos ERPs. Sem campo Extras&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="660" y="55" as="geometry" />
         </mxCell>
-        <mxCell id="n6" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Inbound Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Catálogo · preço · estoque · clientes&lt;br&gt;watermark por entidade, retomável&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="40" y="200" as="geometry" />
+        <mxCell id="capn6" parent="capn2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="ESTRATÉGIAS RESOLVIDAS -uma por capacidade, escolhida na subida" vertex="1">
+          <mxGeometry height="28" width="900" x="40" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="n7" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Outbound Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Vendas · devoluções · movimentos&lt;br&gt;fechamento de caixa&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="350" y="200" as="geometry" />
+        <mxCell id="capn7" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;FullSnapshotStrategy&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Substitui tudo.&lt;br&gt;Janela de manutenção&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="196" as="geometry" />
         </mxCell>
-        <mxCell id="n8" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Mapping Store (De-Para)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Código do ERP ↔ id interno&lt;br&gt;meio de pagamento · filial · CFOP&lt;/span&gt;" vertex="1">
-          <mxGeometry height="90" width="280" x="660" y="200" as="geometry" />
+        <mxCell id="capn8" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;DeltaStrategy&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Marca d&#39;água por entidade.&lt;br&gt;Retomável&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="280" x="350" y="196" as="geometry" />
         </mxCell>
-        <mxCell id="n9" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SAP Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / IDoc]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="40" y="350" as="geometry" />
+        <mxCell id="capn9" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;PushEndpointStrategy&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;O ERP empurra.&lt;br&gt;Nós expomos o endpoint&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="280" x="660" y="196" as="geometry" />
         </mxCell>
-        <mxCell id="n10" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Protheus Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / SOAP]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="350" y="350" as="geometry" />
+        <mxCell id="capn10" parent="capn2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="PORTAS SEGREGADAS - o adaptador implementa só o que o ERP faz" vertex="1">
+          <mxGeometry height="28" width="900" x="40" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="n11" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sankhya Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[arquivo em SFTP]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="660" y="350" as="geometry" />
+        <mxCell id="capn11" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="ICatalogProvider" vertex="1">
+          <mxGeometry height="45" width="215" x="40" y="326" as="geometry" />
         </mxCell>
-        <mxCell id="n12" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Resilience&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[circuit breaker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Por cliente, nunca global&lt;/span&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="40" y="480" as="geometry" />
+        <mxCell id="capn12" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="IPriceProvider" vertex="1">
+          <mxGeometry height="45" width="215" x="268" y="326" as="geometry" />
         </mxCell>
-        <mxCell id="n13" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Reconciliation Report&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Divergência PDV × ERP, diária&lt;/span&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="350" y="480" as="geometry" />
+        <mxCell id="capn13" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="IStockProvider" vertex="1">
+          <mxGeometry height="45" width="215" x="496" y="326" as="geometry" />
         </mxCell>
-        <mxCell id="n14" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Divergence Queue&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Registro rejeitado pelo ERP,&lt;br&gt;com dono e SLA&lt;/span&gt;" vertex="1">
-          <mxGeometry height="80" width="280" x="660" y="480" as="geometry" />
+        <mxCell id="capn14" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="ISalesPublisher" vertex="1">
+          <mxGeometry height="45" width="216" x="724" y="326" as="geometry" />
         </mxCell>
-        <mxCell id="n15" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Por que anticorrupção e não integração direta.&lt;/b&gt; Cada ERP tem seu modelo, seu transporte e seu vocabulário. Sem uma camada que traduza para um modelo canônico, o primeiro cliente define o domínio do produto e o segundo exige reescrita. O adaptador absorve transporte e formato; o núcleo só conhece o canônico." vertex="1">
-          <mxGeometry height="70" width="900" x="40" y="600" as="geometry" />
+        <mxCell id="capn15" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SAP Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / IDoc]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Catalog: Delta&lt;br&gt;Pricing: Delta&lt;br&gt;Stock: Delta&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="40" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="n16" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A reconciliação é obrigatória, não um relatório bonito.&lt;/b&gt; O ERP vai recusar registros - produto inexistente, filial errada, período fechado. Sem um confronto diário do que o PDV vendeu contra o que o ERP aceitou, a divergência só aparece no fechamento contábil do mês." vertex="1">
-          <mxGeometry height="70" width="900" x="40" y="680" as="geometry" />
+        <mxCell id="capn16" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Protheus Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / SOAP]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Catalog: Delta&lt;br&gt;Pricing: &lt;b&gt;junto do catálogo&lt;/b&gt;&lt;br&gt;Stock: FullSnapshot&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="350" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="n17" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;shadow=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;RabbitMQ&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Eventos de venda&lt;/span&gt;" vertex="1">
-          <mxGeometry height="80" width="200" x="60" y="200" as="geometry" />
+        <mxCell id="capn17" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sankhya Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[arquivo em SFTP]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Catalog: FullSnapshot&lt;br&gt;Pricing: &lt;b&gt;Push&lt;/b&gt;&lt;br&gt;Stock: &lt;b&gt;None&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="660" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="n18" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[schema erp]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;De-Para, watermark,&lt;br&gt;divergências&lt;/span&gt;" vertex="1">
-          <mxGeometry height="100" width="200" x="60" y="380" as="geometry" />
+        <mxCell id="capn18" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Mapping Store (De-Para)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Código do ERP ↔ id interno&lt;br&gt;Sem inferência: falta de mapa é rejeição&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="40" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="n19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Fila de divergência&lt;/span&gt;" vertex="1">
-          <mxGeometry height="80" width="200" x="60" y="560" as="geometry" />
+        <mxCell id="capn19" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Reconciliation Report&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[diário]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Confronto PDV × ERP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="350" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="n20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente A&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SAP]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="70" width="220" x="1360" y="350" as="geometry" />
+        <mxCell id="capn20" parent="capn2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Divergence Queue&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Rejeitado pelo ERP,&lt;br&gt;com dono e SLA&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="660" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="n21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente B&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Protheus]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="70" width="220" x="1360" y="450" as="geometry" />
+        <mxCell id="capn21" parent="capn2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Por que capacidade e não uma porta de sete métodos.&lt;/b&gt; Os três adaptadores acima não conseguem implementar a mesma interface: o Protheus manda preço junto do catálogo, o Sankhya empurra preço e não expõe estoque. Porta fixa produziria NotSupportedException -&amp;nbsp; e o orquestrador não saberia o que funciona antes de chamar. Capacidade ausente é decisão de produto, não erro." vertex="1">
+          <mxGeometry height="75" width="900" x="40" y="640" as="geometry" />
         </mxCell>
-        <mxCell id="n22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente C&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sankhya]&lt;/i&gt;" vertex="1">
-          <mxGeometry height="70" width="220" x="1360" y="550" as="geometry" />
+        <mxCell id="capn22" parent="capn2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A resolução acontece uma vez, na subida.&lt;/b&gt; Se virasse if (caps.Pricing.Delta) em call site, teríamos trocado a exceção por condicional espalhada - o mesmo problema em outro lugar. E configuração inválida passa a falhar na inicialização, não às 3h da manhã no meio de um ciclo." vertex="1">
+          <mxGeometry height="60" width="900" x="40" y="725" as="geometry" />
         </mxCell>
-        <mxCell id="e23" edge="1" parent="1" source="n17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n7" value="SaleCompleted.v1">
+        <mxCell id="capn23" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;shadow=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;RabbitMQ&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Eventos de venda&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="210" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="capn24" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[schema erp]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;De-Para · watermark&lt;br&gt;divergências&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="210" x="60" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="capn25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Fila de divergência&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="210" x="60" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="capn26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente A&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SAP]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="220" x="1360" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="capn27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente B&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Protheus]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="220" x="1360" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="capn28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente C&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sankhya]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="220" x="1360" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="cape29" edge="1" parent="1" source="capn23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="capn3" value="SaleCompleted.v1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e24" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n6" value="">
+        <mxCell id="cape30" edge="1" parent="1" source="capn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn4" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e25" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n7" value="">
+        <mxCell id="cape31" edge="1" parent="1" source="capn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn7" value="resolve">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e26" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="">
+        <mxCell id="cape32" edge="1" parent="1" source="capn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn8" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e27" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="">
+        <mxCell id="cape33" edge="1" parent="1" source="capn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn9" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e28" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="">
+        <mxCell id="cape34" edge="1" parent="1" source="capn7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn5" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e29" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n9" value="">
+        <mxCell id="cape35" edge="1" parent="1" source="capn8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn5" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e30" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n10" value="">
+        <mxCell id="cape36" edge="1" parent="1" source="capn9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn5" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e31" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n11" value="">
+        <mxCell id="cape37" edge="1" parent="1" source="capn7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn11" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e32" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="">
+        <mxCell id="cape38" edge="1" parent="1" source="capn8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn12" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e33" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="">
+        <mxCell id="cape39" edge="1" parent="1" source="capn9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn13" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e34" edge="1" parent="1" source="n8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n18" value="">
+        <mxCell id="cape40" edge="1" parent="1" source="capn11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn15" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e35" edge="1" parent="1" source="n9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n20" value="">
+        <mxCell id="cape41" edge="1" parent="1" source="capn12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn16" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e36" edge="1" parent="1" source="n10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n21" value="">
+        <mxCell id="cape42" edge="1" parent="1" source="capn13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn17" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e37" edge="1" parent="1" source="n11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n22" value="">
+        <mxCell id="cape43" edge="1" parent="1" source="capn14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn15" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e38" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="">
+        <mxCell id="cape44" edge="1" parent="1" source="capn18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn24" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e39" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n14" value="">
+        <mxCell id="cape45" edge="1" parent="1" source="capn15" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="capn26" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e40" edge="1" parent="1" source="n14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n19" value="">
+        <mxCell id="cape46" edge="1" parent="1" source="capn16" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="capn27" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e41" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n18" value="">
+        <mxCell id="cape47" edge="1" parent="1" source="capn17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="capn28" value="">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cape48" edge="1" parent="1" source="capn19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cape49" edge="1" parent="1" source="capn20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cape50" edge="1" parent="1" source="capn19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="capn24" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Module Dependency Graph" id="JMwIXRfdYj4Z8my2z_Lf">
+    <mxGraphModel dx="1895" dy="1138" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="modn1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="Grafo de dependência entre módulos - a seta aponta para quem é referenciado (ADR-0022)" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="modn2" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="CAMADA 3" vertex="1">
+          <mxGeometry height="60" width="120" x="40" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="modn3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Returns&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Devolução e troca&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="700" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="modn4" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="CAMADA 2 - orquestração" vertex="1">
+          <mxGeometry height="60" width="220" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="modn5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sales&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Orquestra a venda&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="700" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="modn6" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="CAMADA 1 — folhas" vertex="1">
+          <mxGeometry height="60" width="200" x="40" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;StoreCatalog&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;réplica do ERP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cashier&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;sessão de caixa&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="320" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Payments&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;ref. opaca&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="580" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;StockLedger&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;ref. opaca&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="840" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Fiscal&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;ninguém o referencia&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="1100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ErpIntegration&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;só eventos&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="235" x="1360" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="modn13" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="CAMADA 0" vertex="1">
+          <mxGeometry height="60" width="120" x="40" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="modn14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SharedKernel&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Money · StoreId · Cpf&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="235" x="580" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="modn15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Contracts&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;eventos versionados&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="235" x="840" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="mode16" edge="1" parent="1" source="modn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode17" edge="1" parent="1" source="modn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode18" edge="1" parent="1" source="modn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode19" edge="1" parent="1" source="modn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode20" edge="1" parent="1" source="modn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode21" edge="1" parent="1" source="modn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode22" edge="1" parent="1" source="modn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode23" edge="1" parent="1" source="modn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode24" edge="1" parent="1" source="modn7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode25" edge="1" parent="1" source="modn8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode26" edge="1" parent="1" source="modn9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode27" edge="1" parent="1" source="modn10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode28" edge="1" parent="1" source="modn11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode29" edge="1" parent="1" source="modn12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode30" edge="1" parent="1" source="modn12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn15" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mode31" edge="1" parent="1" source="modn15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="modn14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="modn32" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Fiscal não é referenciado por ninguém&lt;/b&gt;&amp;nbsp;- parece contraintuitivo, já que emitir documento é central. Mas ele atende Sales E Returns: se dependesse de Sale, uma devolução teria de passar por Sales para emitir nota. Recebe um pedido neutro e é alcançado por evento." vertex="1">
+          <mxGeometry height="90" width="760" x="60" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="modn33" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;ErpIntegration toca em tudo e referencia quase nada&lt;/b&gt;&amp;nbsp;- lê venda, devolução e caixa; escreve catálogo, preço e estoque. Não depende de nenhum deles porque conversa só por evento: grava o lote em object storage e publica um ponteiro; quem conhece o formato do destino é o destino. É isso que mantém a anticorrupção honesta." vertex="1">
+          <mxGeometry height="90" width="760" x="840" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="modn34" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Regras que produzem este grafo:&lt;/b&gt; um assembly por módulo (senão internal não significa nada e o ciclo vira achado de revisão, não erro de compilação) · referência entre módulos por id, nunca por tipo · evento é o padrão, referência direta é exceção justificada por &quot;síncrono, na mesma transação&quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;A única dependência discutível&lt;/b&gt; é Returns - Sales. Daria para inverter via DIP, mas devolução sem venda não existe - o acoplamento é de domínio, real. Inverter seria cerimônia escondendo uma relação verdadeira. Revisitar se Returns for extraído em serviço." vertex="1">
+          <mxGeometry height="120" width="1540" x="60" y="700" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Device Lifecycle" id="idRU-gYy9-ZQBv5qeEQB">
+    <mxGraphModel dx="1895" dy="1138" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="devn1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="Ciclo de vida do dispositivo - enrollment, contrato e atualização (ADR-0023 / 0025 / 0026)" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="devn2" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="1. ENROLLMENT - a identidade é do dispositivo, não da loja (ADR-0026)" vertex="1">
+          <mxGeometry height="34" width="1574" x="40" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="devn3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Gera token de uso único,&lt;br&gt;validade curta, ligado à loja&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="60" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="devn4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Edge&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Gera par de chaves &lt;b&gt;localmente&lt;/b&gt;.&lt;br&gt;A privada nunca sai da máquina&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="380" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="devn5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;DeviceManagement&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Registra o dispositivo,&lt;br&gt;devolve o DeviceId&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="700" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="devn6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Access token&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[vida curta]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Renovado provando posse&lt;br&gt;da chave privada&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="1020" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="devn7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Operação&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;status: active&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="255" x="1340" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="deve8" edge="1" parent="1" source="devn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn4" value="token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve9" edge="1" parent="1" source="devn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn5" value="chave pública">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve10" edge="1" parent="1" source="devn5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve11" edge="1" parent="1" source="devn6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="devn12" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="Revogar é &lt;b&gt;uma linha no banco&lt;/b&gt;: status = revoked, e o dispositivo para de sincronizar na próxima tentativa - sem depender de alcançá-lo. A loja recebe outro equipamento sem afetar nada. Revogação não apaga histórico: as vendas já sincronizadas continuam atribuídas a ele." vertex="1">
+          <mxGeometry height="50" width="1535" x="60" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="devn13" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="2. CONTRATO - versão do contrato ≠ versão do Edge (ADR-0023)" vertex="1">
+          <mxGeometry height="34" width="1574" x="40" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="devn14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Edge v5.3&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;X-Contract-Version: 2&lt;br&gt;X-Client-Version: 5.3.0&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="60" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="devn15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cloud&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;v1 adapter · v2 adapter&lt;br&gt;domínio conhece UM modelo&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="320" x="500" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="devn16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;426 Upgrade Required&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Contrato fora da janela.&lt;br&gt;Devolve minContractVersion&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="980" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="devn17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;GET /device/recovery&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SEM VERSÃO - congelado]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Único caminho de volta.&lt;br&gt;Sem ele, loja atrasada vira tijolo&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="275" x="1320" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="deve18" edge="1" parent="1" source="devn14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn15" value="compatível">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve19" edge="1" parent="1" source="devn15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn16" value="incompatível">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve20" edge="1" parent="1" source="devn16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve21" edge="1" parent="1" source="devn17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="devn14" value="ponteiro de atualização">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="devn22" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;O deadlock que o canal de recuperação evita:&lt;/b&gt; loja 6 meses offline volta falando contrato v1, já descontinuado. É rejeitada na sincronização - que é justamente por onde receberia a atualização. Sem um endpoint que nunca quebra, só resolve com visita presencial." vertex="1">
+          <mxGeometry height="50" width="1535" x="60" y="445" as="geometry" />
+        </mxCell>
+        <mxCell id="devn23" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="3. ATUALIZAÇÃO - a cloud decide o alvo, o Edge nunca escolhe (ADR-0025)" vertex="1">
+          <mxGeometry height="34" width="1574" x="40" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="devn24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Anel 0&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[interno]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;mín. 1 dia&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="220" x="60" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="devn25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Anel 1&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[piloto acordado]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;mín. 3 dias&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="220" x="300" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="devn26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Anel 2&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[~10% da frota]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;mín. 3 dias&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="220" x="540" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="devn27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Anel 3&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[restante]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="65" width="220" x="780" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="deve28" edge="1" parent="1" source="devn24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve29" edge="1" parent="1" source="devn25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn26" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="deve30" edge="1" parent="1" source="devn26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn27" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="devn31" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;assinatura + checksum&lt;/b&gt;" vertex="1">
+          <mxGeometry height="65" width="260" x="1040" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="devn32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;staging + health check&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;exercita emissão de teste&lt;/span&gt;" vertex="1">
+          <mxGeometry height="65" width="265" x="1330" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="deve33" edge="1" parent="1" source="devn31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="devn32" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="devn34" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Rollback não desfaz migração de schema.&lt;/b&gt; Migrações do Edge são forward-only e o Edge tira snapshot do SQLite antes de migrar; o rollback restaura binário E snapshot juntos. Mas o snapshot é anterior à migração então se já houve venda desde ele, o rollback é &lt;b&gt;proibido&lt;/b&gt; e o dispositivo fica em failed, escalando para humano. Perder venda é pior que ficar parado." vertex="1">
+          <mxGeometry height="65" width="1535" x="60" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="devn35" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A janela de suporte do contrato sai desta página:&lt;/b&gt; permanência somada dos anéis + período máximo plausível de loja offline + margem. Mudar a cadência de rollout obriga a revisar o ADR-0023. São a mesma decisão, não duas.&lt;br&gt;&lt;br&gt;E o mais importante: &lt;b&gt;atualização nunca é pré-requisito para vender&lt;/b&gt;. Loja offline fica pending e aplica quando conseguir." vertex="1">
+          <mxGeometry height="90" width="1535" x="60" y="725" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Personal Data Flow" id="94my_TDJ6ylIqnQqV9Vu">
+    <mxGraphModel dx="1303" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pdn1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="Fluxo de dado pessoal, bases legais e retenção - LGPD × obrigação fiscal (ADR-0027)" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP do cliente&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Cadastro completo de clientes&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="80" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cloud&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Réplica de cliente&lt;br&gt;nome · documento&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="500" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Store Edge&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Réplica mínima, &lt;b&gt;sob demanda&lt;/b&gt;&lt;br&gt;não é dump do cadastro&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="920" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn5" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;SQLite&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[cifrado em repouso]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Expurgo agressivo:&lt;br&gt;some quando a venda fecha&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="275" x="1320" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pde6" edge="1" parent="1" source="pdn2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="pdn3" value="sync">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pde7" edge="1" parent="1" source="pdn3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="pdn4" value="só o necessário para vender">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pde8" edge="1" parent="1" source="pdn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="pdn5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#F5D9E8;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Documento fiscal&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[CPF na nota]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;XML no object storage&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="500" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="pde10" edge="1" parent="1" source="pdn4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="pdn9" value="venda identificada">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn11" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="OS DOIS REGIMES - dados que se parecem e têm regras opostas" vertex="1">
+          <mxGeometry height="34" width="1574" x="40" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;XML fiscal com CPF&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[base legal: OBRIGAÇÃO LEGAL]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;&lt;b&gt;5 anos. Não se apaga, não se anonimiza.&lt;/b&gt;&lt;br&gt;Pedido de eliminação NÃO alcança este dado -&lt;br&gt;obrigação legal é base autônoma para retenção&lt;/span&gt;" vertex="1">
+          <mxGeometry height="110" width="720" x="80" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Réplica operacional de cliente&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[base legal: execução de contrato]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;&lt;b&gt;Retenção curta. Expurgada quando não mais necessária.&lt;/b&gt;&lt;br&gt;Pedido de eliminação alcança este dado.&lt;br&gt;Nunca tratar pelo mesmo caminho de expurgo do fiscal&lt;/span&gt;" vertex="1">
+          <mxGeometry height="110" width="755" x="840" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn14" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#666666;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="RETENÇÃO NO SQLITE - por categoria, nunca por idade única" vertex="1">
+          <mxGeometry height="34" width="1574" x="40" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Operacional&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;sessão em aberto, cache&lt;br&gt;→ por idade&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="280" x="80" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=none;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sincronização (outbox)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;até CONFIRMAÇÃO da cloud&lt;br&gt;→ nunca por idade&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="300" x="400" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Fiscal&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;até transmitido e arquivado&lt;br&gt;→ depois, obrigação&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="280" x="740" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Auditoria&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;política própria, mais longa&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="250" x="1060" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Réplica de cliente&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;some quando a venda fecha&lt;/span&gt;" vertex="1">
+          <mxGeometry height="75" width="245" x="1350" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="pdn20" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A regra que mais importa:&lt;/b&gt; uma mensagem de outbox nunca é apagada por ser velha. Ela sai por estado de negócio -&amp;nbsp; pending → published → confirmed → purged. Outbox velha não é lixo: é venda que não chegou. Apagá-la por idade é perder faturamento em silêncio, que é o pior modo de falha possível. Outbox parada além de um limiar gera &lt;b&gt;alerta&lt;/b&gt;, não expurgo.&lt;br&gt;&lt;br&gt;&lt;b&gt;Proibido em qualquer caso:&lt;/b&gt; CPF em log, em rótulo de métrica, em URL ou em query string. Em telemetria, no máximo hash com sal - sem sal, o espaço de CPFs é pequeno o bastante para reversão por força bruta." vertex="1">
+          <mxGeometry height="110" width="1515" x="80" y="760" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
