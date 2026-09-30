@@ -1,0 +1,556 @@
+<mxfile host="Electron" pages="5">
+  <diagram name="Home" id="G5FfMA2sO6NSXVe8SjTU">
+    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="&lt;strong&gt;RETAIL FLOW&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;em&gt;PDV offline conectado ao ERP&lt;/em&gt;&amp;nbsp;&lt;div&gt;&amp;nbsp;Arquitetura TO BE&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="1534" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;PDV multi-loja, multi-ERP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Ponto de venda com operação offline, emissão fiscal própria e integração com o ERP do cliente.&lt;br&gt;O ERP é dono do catálogo, do preço e do estoque. O PDV consome, vende e devolve o resultado.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="1534" x="60" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#99CCFF;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="Índice" vertex="1">
+          <mxGeometry height="40" width="740" x="60" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Context Diagram&lt;/b&gt;&amp;nbsp;- fronteira do sistema e atores&lt;br&gt;&lt;br&gt;&lt;b&gt;Container Diagram&lt;/b&gt;&amp;nbsp;- processos, dados e o que roda na loja&lt;br&gt;&lt;br&gt;&lt;b&gt;Component - Store Edge&lt;/b&gt;&amp;nbsp;- o que mantém a loja vendendo offline&lt;br&gt;&lt;br&gt;&lt;b&gt;Component - ERP Connector&lt;/b&gt;&amp;nbsp;- camada de anticorrupção multi-ERP" vertex="1">
+          <mxGeometry height="180" width="740" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#66FF66;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="Legenda" vertex="1">
+          <mxGeometry height="40" width="754" x="840" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Loja&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Roda no hardware da loja&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="860" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="1" style="fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" value="" vertex="1">
+          <mxGeometry height="50" width="8" x="860" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cloud&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Backend do produto&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="1040" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" parent="1" style="fillColor=#7EA6E0;strokeColor=#7EA6E0;" value="" vertex="1">
+          <mxGeometry height="50" width="8" x="1040" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Connector&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Anticorrupção&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="1220" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="1" style="fillColor=#FF0000;strokeColor=#FF0000;" value="" vertex="1">
+          <mxGeometry height="50" width="8" x="1220" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Externo&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Terceiros&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="1400" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" parent="1" style="fillColor=#B5739D;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="50" width="8" x="1400" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="1" style="fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="880" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="1" style="fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="1080" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="n14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n15" value="síncrono">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="1" style="fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="1180" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="1400" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="n17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n18" value="assíncrono / integração">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#99FF99;fontColor=#FFFFFF;textShadow=0;fontSize=16;" value="Premissas" vertex="1">
+          <mxGeometry height="40" width="1534" x="60" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;PREMISSA 1&lt;/b&gt;&amp;nbsp;-&amp;nbsp; A loja precisa continuar vendendo com o link caído. Define o Store Edge e a emissão fiscal local.&lt;br&gt;&lt;b&gt;PREMISSA 2&lt;/b&gt;&amp;nbsp; - Sem Event Sourcing. Estado atual no PostgreSQL; eventos são de integração, via Outbox.&lt;br&gt;&lt;b&gt;PREMISSA 3&lt;/b&gt; - O ERP do cliente é dono de catálogo, preço e estoque. O PDV replica e reporta, nunca cadastra.&lt;br&gt;&lt;b&gt;PREMISSA 4&lt;/b&gt; - Produto de mercado: precisa falar com vários ERPs. Exige camada de anticorrupção e modelo canônico.&lt;br&gt;&lt;b&gt;RESTRIÇÃO 1&lt;/b&gt; - SEFAZ e adquirente são terceiros lentos e instáveis. Nunca no caminho síncrono da cloud.&lt;br&gt;&lt;b&gt;RESTRIÇÃO 2&lt;/b&gt; - O ERP também cai. Venda nunca depende dele em tempo real." vertex="1">
+          <mxGeometry height="150" width="1534" x="60" y="590" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name=" POS" id="ifRcwhP6epXGCt1pL63F">
+    <mxGraphModel dx="2575" dy="1565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="&amp;nbsp;RetailFlow POS" vertex="1">
+          <mxGeometry height="50" width="1534" x="60" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;fontStyle=1;strokeColor=#000066;strokeWidth=2;" value="Operador de Caixa" vertex="1">
+          <mxGeometry height="80" width="40" x="130" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;fontStyle=1;strokeColor=#000066;strokeWidth=2;" value="Gerente de Loja" vertex="1">
+          <mxGeometry height="80" width="40" x="130" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;fontStyle=1;strokeColor=#000066;strokeWidth=2;" value="Administrador da Rede" vertex="1">
+          <mxGeometry height="80" width="40" x="130" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFF2CC;strokeColor=#99004D;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow POS&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sistema]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Ponto de venda multi-loja com operação offline,&lt;br&gt;emissão fiscal e integração com o ERP do cliente&lt;/span&gt;" vertex="1">
+          <mxGeometry height="160" width="400" x="620" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP do Cliente&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sistema externo]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;SAP, Protheus, Sankhya, …&lt;br&gt;&lt;b&gt;Dono do catálogo, preço e estoque&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="280" x="1300" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SEFAZ&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sistema externo]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Autoriza NFC-e e NF-e por UF&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="1300" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Adquirente / TEF&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sistema externo]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Captura cartão e Pix&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="1300" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Provedor de e-mail / SMS&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sistema externo]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Envia cupom ao cliente&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="1300" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="n2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="opera o caixa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="autoriza e confere">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="configura lojas e integração">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;curved=1;" target="n5" value="catálogo, preço, estoque, clientes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="n5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n6" value="vendas, devoluções, movimentos, fechamento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n7" value="autoriza documento fiscal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="captura pagamento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="n5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n9" value="envia cupom">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A fronteira do produto.&lt;/b&gt; O RetailFlow não cadastra produto, não define preço e não é dono do saldo - isso é do ERP. Ele captura a venda, emite o documento fiscal, controla o caixa e devolve o resultado. O que ele garante e o ERP não: a loja vende mesmo com o link caído." vertex="1">
+          <mxGeometry height="120" width="400" x="620" y="620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="POS" id="3HY03tE_v2XWcNiqXjyu">
+    <mxGraphModel dx="2575" dy="1565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="RetailFlow Geral" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#99004D;fontSize=14;spacingTop=4;" value="LOJA FÍSICA -&amp;nbsp; replicado em cada unidade" vertex="1">
+          <mxGeometry height="640" width="420" x="40" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;POS App&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[.NET 10 / PWA]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Tela de caixa e periféricos&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Pinpad / TEF&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SDK adquirente]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="230" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFF2CC;strokeColor=#99004D;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Store Edge&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[.NET 10 Worker + Minimal API]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Fila local · réplica de catálogo e preço&lt;br&gt;emissão NFC-e · contingência&lt;br&gt;sessão de caixa&lt;/span&gt;" vertex="1">
+          <mxGeometry height="130" width="360" x="30" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="n2" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;Store Local Store&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SQLite]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Vendas pendentes · outbox local&lt;br&gt;faixa de numeração · réplica do ERP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="360" x="30" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Certificado A1&lt;/b&gt; vive aqui. A contingência offline exige assinar localmente - se o link caiu, um assinador na cloud também está inalcançável." vertex="1">
+          <mxGeometry height="70" width="360" x="30" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#7EA6E0;fontSize=14;spacingTop=4;" value="CLOUD - backend do produto" vertex="1">
+          <mxGeometry height="1000" width="780" x="500" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[YARP]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;AuthN/Z · rate limit por loja&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="340" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.Admin&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Blazor Server]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Operação de negócio&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="350" x="400" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.Api&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[ASP.NET Core Minimal API]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Sales · Returns · Cashier · Payments&lt;br&gt;StoreCatalog (réplica) · Devices&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="340" x="30" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.Fiscal&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[ASP.NET Core + Worker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;NF-e de devolução · faixas de numeração&lt;br&gt;reconciliação · guarda de XML&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="350" x="400" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFF2CC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.ErpConnector&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[ASP.NET Core + Worker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Camada de anticorrupção · modelo canônico&lt;br&gt;adaptador por ERP · De-Para · reconciliação&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="720" x="30" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.Workers&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[.NET Worker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Projeções · notificação · auditoria&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="30" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;RetailFlow.OutboxRelay&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[.NET Worker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Publica outbox no broker&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="275" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;PgBouncer&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[transaction pooling]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Pool por workload&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="520" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="n8" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[primary + réplicas]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Schema por módulo · particionado&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="340" x="30" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="n8" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[cache]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Preço replicado · reserva&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="350" x="400" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" parent="n8" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;shadow=1;fillColor=#FFF2CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;RabbitMQ&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[quorum queues]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;DLX e fila de retry por consumidor&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="340" x="30" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" parent="n8" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;Object Storage&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[XML fiscal 5 anos]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Arquivos de sincronização&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="350" x="400" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" parent="n8" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;OTel Collector&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[OTLP]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;&amp;nbsp;Grafana / Tempo / Loki / Mimir&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="720" x="30" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" parent="n8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Por que o ErpConnector atravessa a largura toda:&lt;/b&gt; num produto multi-ERP ele é o componente mais complexo e o único que muda a cada cliente novo. Isolar ele é o que impede o modelo de um ERP de vazar para dentro do domínio do PDV." vertex="1">
+          <mxGeometry height="70" width="720" x="30" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="e32" edge="1" parent="n8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" value="NFC-e assinada localmente&lt;br&gt;timeout curto">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-70" y="280" as="sourcePoint" />
+            <mxPoint x="967.0000000000005" y="385" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e38" edge="1" parent="n8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="235" as="sourcePoint" />
+            <mxPoint x="635" y="455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#B5739D;fontSize=14;spacingTop=4;" value="SISTEMAS EXTERNOS" vertex="1">
+          <mxGeometry height="640" width="294" x="1320" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" parent="n23" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente A&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SAP]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;REST / IDoc&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="254" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" parent="n23" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente B&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Protheus]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;REST / SOAP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="254" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" parent="n23" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente C&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sankhya / outros]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Arquivo em SFTP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="254" x="20" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" parent="n23" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SEFAZ&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[por UF]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="254" x="20" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" parent="n23" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Adquirente&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="254" x="20" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="e29" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="HTTP local">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e30" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="serial/USB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e31" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e33" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n28" value="captura">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e34" edge="1" parent="1" source="n5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n9" value="sincroniza vendas&lt;br&gt;Idempotency-Key">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e35" edge="1" parent="1" source="n9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e36" edge="1" parent="1" source="n9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e37" edge="1" parent="1" source="n10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e39" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e40" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e41" edge="1" parent="1" source="n16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e42" edge="1" parent="1" source="n15" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;curved=1;" target="n19" value="publica">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e43" edge="1" parent="1" source="n19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;curved=1;" target="n14" value="consome">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e44" edge="1" parent="1" source="n19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;curved=1;" target="n13" value="consome vendas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e45" edge="1" parent="1" source="n11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" target="n18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e46" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n27" value="NF-e · cancelamento&lt;br&gt;inutilização · consulta">
+          <mxGeometry relative="1" x="-0.0037" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e47" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e48" edge="1" parent="1" source="n13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n24" value="pull catálogo/preço/estoque&lt;br&gt;push vendas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e50" edge="1" parent="1" source="n13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n26" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Store Edge" id="Blcsmlu-6adhEfcX5Dya">
+    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="&amp;nbsp;Store Edge" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#B5739D;fontSize=14;spacingTop=4;" value="Store Edge [.NET 10]" vertex="1">
+          <mxGeometry height="800" width="1000" x="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Local API&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Minimal API]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Contrato único do POS,&lt;br&gt;idêntico online e offline&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sale Session Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Monta a venda, aplica preço&lt;br&gt;e desconto da réplica&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="370" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cashier Session Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Abertura, sangria, suprimento,&lt;br&gt;fechamento com conferência cega&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="700" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Catalog &amp;amp; Price Replica&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SQLite + memória]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Réplica do ERP.&lt;br&gt;Nunca cadastra, só consome&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;TEF Adapter&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Idempotente por NSU&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="370" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Number Range Store&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Faixa arrendada por série&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="700" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;NFC-e Emitter&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Monta XML, assina, transmite&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="370" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#99004D;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Signer&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Certificado A1]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Repositório protegido do SO&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="700" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#99004D;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Contingency Controller&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Decide tpEmis: 1 normal · 9 offline&lt;br&gt;com histerese, não oscila&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" parent="n2" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;Local Outbox&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SQLite]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Vendas e notas pendentes&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Cloud Sync Worker&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Envia outbox, puxa deltas&lt;br&gt;e novas faixas&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="370" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Telemetry Buffer&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Emite quando online&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="700" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;O componente que decide se a loja para.&lt;/b&gt; O Contingency Controller observa a resposta da SEFAZ: cStat 108/109, erro de rede ou estouro do timeout curto trocam a emissão para contingência offline. O cupom sai assinado localmente, entra na outbox e é transmitido quando o serviço volta, dentro do prazo da UF." vertex="1">
+          <mxGeometry height="70" width="920" x="40" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Réplica, não cadastro.&lt;/b&gt; Catálogo, preço e estoque chegam do ERP pela cloud. O Edge nunca é fonte da verdade desses dados - mas precisa deles localmente para vender offline, então mantém uma réplica com vigência." vertex="1">
+          <mxGeometry height="60" width="920" x="40" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;POS App&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[.NET 10 / PWA]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="180" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#B5739D;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SEFAZ&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[externo]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1370" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#7EA6E0;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[cloud]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1370" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="n17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e24" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e25" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e26" edge="1" parent="1" source="n9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e27" edge="1" parent="1" source="n9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e28" edge="1" parent="1" source="n9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e29" edge="1" parent="1" source="n11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n18" value="online">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e30" edge="1" parent="1" source="n11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n12" value="offline: tpEmis=9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e31" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e32" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e33" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n13" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e34" edge="1" parent="1" source="n13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;curved=1;" target="n19" value="HTTPS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e35" edge="1" parent="1" source="n13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n6" value="delta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e36" edge="1" parent="1" source="n13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n8" value="nova faixa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e37" edge="1" parent="1" source="n14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n19" value="OTLP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="ERP Connector" id="eE6n8UGbs5jBR7afq6Ti">
+    <mxGraphModel dx="1585" dy="963" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#E6E6E6" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;labelBackgroundColor=none;fillColor=#d80073;fontColor=#ffffff;textShadow=0;fontSize=16;strokeColor=#A50040;" value="Component Diagram - ERP Connector (camada de anticorrupção)" vertex="1">
+          <mxGeometry height="44" width="1574" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#E6E6E6;fontColor=#000000;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;strokeWidth=2;strokeColor=#6600CC;fontSize=14;spacingTop=4;" value="RetailFlow.ErpConnector" vertex="1">
+          <mxGeometry height="830" width="980" x="320" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sync Orchestrator&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Agenda e coordena ciclos&lt;br&gt;por cliente e por entidade&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Canonical Model&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Modelo interno do PDV.&lt;br&gt;Nenhum ERP vaza para dentro&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="350" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Adapter Port&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[interface]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Contrato que todo&lt;br&gt;adaptador implementa&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="660" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Inbound Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Catálogo · preço · estoque · clientes&lt;br&gt;watermark por entidade, retomável&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Outbound Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Vendas · devoluções · movimentos&lt;br&gt;fechamento de caixa&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="350" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Mapping Store (De-Para)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Código do ERP ↔ id interno&lt;br&gt;meio de pagamento · filial · CFOP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="280" x="660" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;SAP Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / IDoc]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="40" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Protheus Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[REST / SOAP]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="350" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Sankhya Adapter&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[arquivo em SFTP]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="660" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Resilience&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[circuit breaker]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Por cliente, nunca global&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFCC;strokeColor=#FF0000;strokeWidth=3;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Reconciliation Report&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Divergência PDV × ERP, diária&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="350" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="n2" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Divergence Queue&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Registro rejeitado pelo ERP,&lt;br&gt;com dono e SLA&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="280" x="660" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;Por que anticorrupção e não integração direta.&lt;/b&gt; Cada ERP tem seu modelo, seu transporte e seu vocabulário. Sem uma camada que traduza para um modelo canônico, o primeiro cliente define o domínio do produto e o segundo exige reescrita. O adaptador absorve transporte e formato; o núcleo só conhece o canônico." vertex="1">
+          <mxGeometry height="70" width="900" x="40" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" parent="n2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;A reconciliação é obrigatória, não um relatório bonito.&lt;/b&gt; O ERP vai recusar registros - produto inexistente, filial errada, período fechado. Sem um confronto diário do que o PDV vendeu contra o que o ERP aceitou, a divergência só aparece no fechamento contábil do mês." vertex="1">
+          <mxGeometry height="70" width="900" x="40" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;shadow=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" value="&lt;b&gt;RabbitMQ&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Eventos de venda&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="200" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;shadow=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[schema erp]&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;De-Para, watermark,&lt;br&gt;divergências&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="60" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#FFFFFF;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Fila de divergência&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="200" x="60" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente A&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[SAP]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="1360" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente B&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Protheus]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="1360" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fillColor=#B5739D;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;ERP Cliente C&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:10px&quot;&gt;[Sankhya]&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="1360" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="n17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n7" value="SaleCompleted.v1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e24" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e25" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e26" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e27" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e28" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e29" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e30" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e31" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e32" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e33" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e34" edge="1" parent="1" source="n8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e35" edge="1" parent="1" source="n9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e36" edge="1" parent="1" source="n10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n21" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e37" edge="1" parent="1" source="n11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;strokeColor=#0066CC;strokeWidth=3;fontSize=10;" target="n22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e38" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e39" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e40" edge="1" parent="1" source="n14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e41" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;fontSize=10;" target="n18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
