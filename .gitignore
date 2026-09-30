@@ -47,3 +47,8 @@ logs/
 *.snupkg
 **/[Pp]ackages/*
 !**/[Pp]ackages/build/
+
+## draw.io
+.$*.drawio.bkp
+.$*.drawio.dtmp
+*.drawio.bak
