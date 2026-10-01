@@ -1,0 +1,8 @@
+## draw.io
+.$*.drawio.bkp
+.$*.drawio.dtmp
+*.drawio.bak
+
+## OS
+.DS_Store
+Thumbs.db
