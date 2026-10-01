@@ -26,7 +26,7 @@ Rather than hand-rolling an `OutboxMessage` table, an `OutboxService`, and a
 polling `BackgroundService` (as originally sketched in the project plan), this is
 implemented with Wolverine's built-in Postgres-backed durable messaging
 (`WolverineFx.Postgresql` + `WolverineFx.EntityFrameworkCore`), configured once in
-[`RetailFlow.Infrastructure/DependencyInjection.cs`](../../src/RetailFlow.Infrastructure/DependencyInjection.cs):
+[`RetailFlow.Infrastructure/DependencyInjection.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Infrastructure/DependencyInjection.cs):
 
 ```csharp
 opts.PersistMessagesWithPostgresql(postgresConnectionString);

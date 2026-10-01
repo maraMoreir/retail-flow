@@ -35,7 +35,7 @@ Two things make the eventual-consistency window tolerable rather than confusing:
    produces while projecting that event — a request and its eventual read-model
    update can be traced end to end by one ID, even though they happen on two
    different hosts seconds apart. See
-   [`RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs`](../../src/RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs).
+   [`RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs).
 2. **At-least-once delivery means projections must be idempotent.** The outbox
    guarantees a domain event is delivered at least once, not exactly once —
    Worker projection handlers have to tolerate seeing `SaleCompletedEvent` for the

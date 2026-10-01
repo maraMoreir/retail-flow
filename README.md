@@ -1,184 +1,147 @@
 # RetailFlow
 
-> A staff-engineer-grade distributed retail platform built with .NET 10 — Clean
-> Architecture, DDD, CQRS, the transactional outbox pattern, and full local
-> observability, built as a reference implementation other teams can learn from.
+> An offline-first **Point of Sale** for Brazilian retail chains, designed to integrate with
+> whatever ERP the customer already runs.
 
+![Status](https://img.shields.io/badge/status-IN%20DEVELOPMENT-blue)
 ![.NET](https://img.shields.io/badge/.NET-10-blueviolet)
-![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Message_Broker-orange)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
-![Redis](https://img.shields.io/badge/Redis-Cache-red)
-![Keycloak](https://img.shields.io/badge/Keycloak-AuthN%2FAuthZ-blueviolet)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-quorum_queues-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## Overview
+## What it is
 
-RetailFlow is an enterprise retail platform inspired by real-world Point of Sale
-(POS) and ERP systems: sales, inventory, fiscal documents, notifications, and
-reporting, coordinated through asynchronous messaging with a guaranteed-delivery
-outbox instead of the request/response calls a simpler CRUD app would use.
+A POS for physical retail. It owns **what happens at the counter**:
 
-The goal isn't a feature checklist — it's a reference for the operational
-maturity (resilience, security, observability, testing depth) a platform team
-would actually expect in production, documented well enough that someone else
-could pick it up and keep building.
+| RetailFlow owns | The customer's ERP owns |
+|---|---|
+| Sale | Product catalog |
+| Fiscal document (NFC-e / NF-e) | Price and commercial policy |
+| Cash session | Stock balance |
+| Payment / TEF capture | Customers |
+| Return and exchange | Accounting and reporting |
 
-**Current status**: Phase 2 (Architecture & Domain Design) — see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned)
-for exactly what's real vs. planned. Short version: the architecture, messaging,
-security, resilience policies, and testing scaffolding all exist and are
-verified end-to-end; the domain event contracts and shared value objects that
-define each bounded context's vocabulary now exist too. The actual business
-logic (Sales, Inventory, Fiscal, Notification aggregates, the create-sale saga)
-hasn't been built yet — that's Phase 3.
+RetailFlow **replicates** what the ERP owns so it can sell offline, and **reports back**
+what the store did. It never registers a product, never sets a price, and is never the
+source of truth for stock.
 
----
+That boundary is the product.
 
-## Architecture at a glance
+## What makes it hard
 
-- **Clean Architecture**, enforced at build time — `RetailFlow.Domain` has zero
-  dependencies, and [`RetailFlow.ArchitectureTests`](tests/RetailFlow.ArchitectureTests)
-  fails the build if any layer starts depending on the wrong thing.
-- **CQRS**: `RetailFlow.Reporting` is a genuinely separate read side (its own
-  `DbContext`, no reference to `RetailFlow.Domain`) rather than the same
-  entities with a different label.
-- **Transactional outbox**: an aggregate's new state and the domain event it
-  raised are written to Postgres in one transaction; publishing to RabbitMQ
-  happens afterward, durably, with retry — see
-  [ADR-002](docs/ADRs/002-outbox-pattern-for-reliability.md).
-- **Wolverine**, not MediatR + MassTransit: both went commercial after the
-  original plan was written. One MIT-licensed library now covers in-process
-  dispatch, the RabbitMQ transport, Sagas, and the outbox — see
-  [ADR-006](docs/ADRs/006-messaging-and-mediator-library-choice.md).
-- **Domain events** for all five bounded contexts (`SaleCompletedEvent`,
-  `InventoryReservedEvent`, `FiscalGeneratedEvent`, ...) and shared value objects
-  (`Money`, `ProductCode`) already exist as the vocabulary Phase 3's aggregates
-  will use — see [docs/ARCHITECTURE.md § Domain events](docs/ARCHITECTURE.md#domain-events).
-- **Saga design** for the create-sale flow, correlated on `SaleId` via Wolverine's
-  `Saga` base class — see [ADR-001](docs/ADRs/001-saga-pattern-for-transactions.md)
-  (design only; no aggregate exists yet to trigger it).
-- **Resilience policies** wired at the infrastructure level: DB retry, message
-  retry, and an HTTP circuit breaker for future outbound calls (Fiscal authority,
-  etc.) — proven against real failure scenarios in `RetailFlow.ChaosTests`, not
-  just configured.
-- **Keycloak** for AuthN/OIDC, with policy-based RBAC (`Manager`, `Customer`,
-  `AdminOnly`) backed by realm roles.
+Three things, and they are the whole reason the architecture looks the way it does.
 
-Full detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Decision records:
-[docs/ADRs](docs/ADRs/README.md).
+**1. The store must keep selling when the link drops.** Not degrade — sell. That forces a
+process running on hardware inside the store (**Store Edge**), a local fiscal number range,
+and the A1 certificate on premises. It cannot be retrofitted.
+
+**2. NFC-e must be authorized before the receipt prints**, because the receipt carries the
+protocol. And SEFAZ goes down. So emission is **local**, with a short timeout and a fall
+back to offline contingency (`tpEmis=9`) — a legal operating mode, not an error handler.
+
+**3. It has to speak to any ERP.** SAP, Protheus, Sankhya — each with its own model,
+vocabulary and transport (REST, SOAP, a file on SFTP). Without an anticorruption layer,
+the first customer defines the product's domain and the second one requires a rewrite.
 
 ---
 
-## Getting started
+## Architecture
 
-Prerequisites: [.NET 10 SDK](https://dotnet.microsoft.com/download), Docker
-Desktop (or another Docker engine). [`just`](https://github.com/casey/just) is
-optional — every recipe in the `justfile` is a plain `dotnet`/`docker` command
-underneath.
-
-```bash
-just up          # Postgres, RabbitMQ, Redis, Seq, Keycloak
-just test        # dotnet test RetailFlow.slnx - includes a real Testcontainers-backed
-                  # boot of the API against disposable Postgres/RabbitMQ/Redis
-just run-api      # dotnet run --project src/RetailFlow.Api
+```
+┌─ STORE (one per location) ──────────┐      ┌─ CLOUD ─────────────────────────┐
+│                                     │      │                                 │
+│   POS App ──► Store Edge ──► SQLite │      │   API Gateway                   │
+│                   │                 │      │        │                        │
+│                   ├──► Pinpad/TEF   │      │        ├──► Api                 │
+│                   │                 │      │        │    Sales · Returns     │
+│                   └──► SEFAZ        │      │        │    Cashier · Payments  │
+│                        NFC-e signed │      │        │                        │
+│                        locally      │      │        └──► Fiscal              │
+│                                     │      │             NF-e · ranges       │
+│   • catalog + price replica         │      │             reconciliation      │
+│   • leased fiscal number range      │      │                                 │
+│   • A1 certificate                  │      │   ErpConnector                  │
+│   • local outbox                    │      │     canonical model + adapters  │
+│   • cash session                    │      │        │                        │
+│                                     │      │        └──► customer's ERP      │
+└──────────────┬──────────────────────┘      └─────────────────────────────────┘
+               │  HTTPS + Idempotency-Key
+               └──────────────────────────────────────►
 ```
 
-Then:
-- API: `http://localhost:5xxx` (see the port `dotnet run` prints), health checks
-  at `/health`, `/health/live`, `/health/ready`.
-- Seq (logs): `http://localhost:8081`
-- RabbitMQ management: `http://localhost:15672` (guest/guest)
-- Keycloak admin console: `http://localhost:8080` (admin/admin)
+Full C4 model — Context, Container, Components, module dependency graph, device lifecycle
+and personal-data flow — in [retail-flow.drawio](retail-flow.drawio) (9 pages).
 
-Get a bearer token with one of the seeded demo users
-(`admin.demo` / `customer.demo`, password `retailflow-dev`):
+Written overview: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-```bash
-curl -X POST http://localhost:8080/realms/retailflow/protocol/openid-connect/token \
-  -d client_id=retailflow-api -d grant_type=password \
-  -d username=admin.demo -d password=retailflow-dev
-```
+---
 
-Run `just` with no arguments (or open the `justfile`) for the full recipe list.
+## Decisions
+
+Decisions live in [docs/ADRs](docs/ADRs/README.md) — one file per significant,
+hard-to-reverse choice, each recording the alternatives rejected and the consequences,
+including the bad ones.
+
+| ADR | Decision |
+|---|---|
+| [001](docs/ADRs/001-saga-pattern-for-transactions.md) | Saga pattern for distributed transactions |
+| [002](docs/ADRs/002-outbox-pattern-for-reliability.md) | Outbox pattern for reliable event delivery |
+| [004](docs/ADRs/004-cqrs-eventual-consistency.md) | CQRS eventual consistency |
+| [006](docs/ADRs/006-messaging-and-mediator-library-choice.md) | Messaging & mediator library choice (Wolverine) |
+
+---
+
+## Stack
+
+**Backend** — .NET 10 · ASP.NET Core · Wolverine (messaging + mediator) · EF Core
+· PostgreSQL 17 · Redis · RabbitMQ · SQLite (Store Edge)
+
+**Infrastructure** — Docker · Keycloak · GitHub Actions
+
+**Observability** — OpenTelemetry over OTLP, one pipeline for logs, metrics and traces.
 
 ---
 
 ## Project structure
 
 ```
-RetailFlow/
-├── src/
-│   ├── RetailFlow.Domain/          # Zero dependencies. Common/ (Entity, Money, ProductCode) +
-│   │                                #   Sales/Inventory/Fiscal/Notification/ (domain events - no
-│   │                                #   aggregates yet, see docs/ARCHITECTURE.md#status)
-│   ├── RetailFlow.Application/     # Commands, queries, validators. No Wolverine reference.
-│   ├── RetailFlow.Infrastructure/  # EF Core, Wolverine wiring, Redis, health checks.
-│   ├── RetailFlow.Shared/          # Correlation IDs, clock, Result<T> - cross-cutting, no Domain ref.
-│   ├── RetailFlow.Reporting/       # CQRS read side. Own DbContext, no Domain reference.
-│   ├── RetailFlow.Api/             # ASP.NET Core minimal API host.
-│   └── RetailFlow.Worker/          # Background host (event consumers, projections, sagas).
-├── tests/
-│   ├── RetailFlow.UnitTests/
-│   ├── RetailFlow.IntegrationTests/   # Testcontainers: real Postgres/RabbitMQ/Redis
-│   ├── RetailFlow.ArchitectureTests/  # NetArchTest - enforces the dependency rules above
-│   ├── RetailFlow.ContractTests/      # Pact - wired, no consumer/provider pair yet
-│   ├── RetailFlow.ChaosTests/         # Polly v8 resilience pipelines
-│   └── RetailFlow.PerformanceTests/   # BenchmarkDotNet
-├── docs/
-│   ├── ARCHITECTURE.md
-│   └── ADRs/
-├── docker/keycloak/realm-export.json
-├── docker-compose.yml
-├── Directory.Build.props           # Shared project settings
-├── Directory.Packages.props        # Central Package Management - one version per package
-└── justfile
+src/
+  RetailFlow.Api              HTTP entry point, auth, health checks, error handling
+  RetailFlow.Application      use cases, pipeline behaviours
+  RetailFlow.Domain           Sales · Inventory · Fiscal · Notification
+  RetailFlow.Infrastructure   persistence, messaging, external integrations
+  RetailFlow.Reporting        read model
+  RetailFlow.Worker           background consumers
+  RetailFlow.Shared           value objects, Result, cross-cutting primitives
+tests/
+  RetailFlow.UnitTests
+  RetailFlow.IntegrationTests
+  RetailFlow.ArchitectureTests   enforces module boundaries at build time
+  RetailFlow.ContractTests       one per ERP adapter
+  RetailFlow.ChaosTests          offline, SEFAZ down, ERP down, compensation paths
+  RetailFlow.PerformanceTests
+docs/
+  ARCHITECTURE.md
+  ADRs/
 ```
 
-Sales/Inventory/Fiscal/Notification bounded contexts live as namespaces inside
-`Domain`/`Application` (not separate assemblies) — see
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#bounded-contexts) for why.
-
 ---
 
-## Technology stack
+## Branches
 
-| Concern | Choice |
-|---|---|
-| Runtime | .NET 10, ASP.NET Core Minimal APIs |
-| Persistence | PostgreSQL, EF Core 10 |
-| Messaging / CQRS dispatch / Outbox / Saga | [Wolverine](https://wolverinefx.net/) (MIT) |
-| Cache | Redis |
-| AuthN/AuthZ | Keycloak (OIDC), policy-based RBAC |
-| Validation | FluentValidation |
-| Logging | Serilog → Seq |
-| Resilience | Polly v8 |
-| Architecture | Clean Architecture, DDD, CQRS |
-| Testing | xUnit, NetArchTest, Testcontainers, PactNet, BenchmarkDotNet |
-| Local infra | Docker Compose |
-| CI | GitHub Actions |
+| Branch | Carries | How it receives changes |
+|---|---|---|
+| `main` | README, project structure and documentation | Documentation lands here directly |
+| `staging` | Homologation | Pull request from `dev` |
+| `dev` | Integration — all code | Feature branches |
 
----
-
-## Roadmap
-
-Everything below is planned, not built — tracked as it lands in
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned) and
-[docs/ADRs](docs/ADRs/README.md).
-
-- Sales, Inventory, Fiscal, Notification bounded-context aggregates (actual
-  business logic - the domain events and shared value objects they'll use
-  already exist, see [Architecture at a glance](#architecture-at-a-glance))
-- The `CreateSaleSaga` implementation (design already recorded in ADR-001)
-- Reporting projection handlers (design already recorded in ADR-004)
-- OpenTelemetry distributed tracing, Prometheus metrics, Grafana dashboards
-- Audit trail, PII encryption at rest, `docs/SECURITY.md`
-- SonarQube / OWASP dependency scanning / Dependabot
-- Kubernetes manifests, CI/CD image publishing
+Code never lands on `main` directly: it goes through a pull request from `dev` into
+`staging` for homologation first.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT
