@@ -47,9 +47,9 @@ public static class CreateSaleHandler
 
 `RetailFlow.Application` therefore has **zero package dependency on Wolverine** -
 see the `Application_ShouldNotDependDirectlyOnWolverine` architecture test in
-[`RetailFlow.ArchitectureTests`](../../tests/RetailFlow.ArchitectureTests/LayerDependencyTests.cs).
+[`RetailFlow.ArchitectureTests`](https://github.com/maraMoreir/retail-flow/blob/dev/tests/RetailFlow.ArchitectureTests/LayerDependencyTests.cs).
 Only `RetailFlow.Infrastructure` (the composition-root wiring, in
-[`DependencyInjection.cs`](../../src/RetailFlow.Infrastructure/DependencyInjection.cs))
+[`DependencyInjection.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Infrastructure/DependencyInjection.cs))
 references it, which is a *stronger* separation of concerns than the original
 MediatR-based design, where every handler had to implement a MediatR interface
 and every Application project had to reference the MediatR package directly.
