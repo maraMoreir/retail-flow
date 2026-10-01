@@ -18,7 +18,7 @@ hosts run today:
   everything asynchronous: consuming domain events over RabbitMQ, projecting
   read models, handling sagas. In Phase 1 it exists and is wired to the same
   infrastructure as the API, but has no consumers yet — Wolverine's own hosted
-  service is what keeps it alive (see [`Program.cs`](../src/RetailFlow.Worker/Program.cs)).
+  service is what keeps it alive (see [`Program.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Worker/Program.cs)).
 
 Both hosts are built from the same set of class libraries:
 
@@ -52,7 +52,7 @@ Both hosts are built from the same set of class libraries:
 
 Arrows point from "depends on" to "depended upon." `RetailFlow.Domain` has no
 project references at all — enforced by
-[`RetailFlow.ArchitectureTests`](../tests/RetailFlow.ArchitectureTests/LayerDependencyTests.cs),
+[`RetailFlow.ArchitectureTests`](https://github.com/maraMoreir/retail-flow/blob/dev/tests/RetailFlow.ArchitectureTests/LayerDependencyTests.cs),
 which fails the build if that (or any other rule on this diagram) is violated.
 `RetailFlow.Reporting` deliberately does **not** reference `RetailFlow.Domain`:
 it's the CQRS read side, querying its own denormalized projections through a
@@ -118,10 +118,10 @@ commercial licensing).
   — a `FluentValidation.AbstractValidator<T>` for a command/query is discovered
   and run before the handler, no per-handler wiring needed. A validation failure
   becomes a 400 with a field-level error breakdown (see
-  [`GlobalExceptionHandler`](../src/RetailFlow.Api/ErrorHandling/GlobalExceptionHandler.cs)).
+  [`GlobalExceptionHandler`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Api/ErrorHandling/GlobalExceptionHandler.cs)).
 
 All of this is configured once, in
-[`RetailFlow.Infrastructure/DependencyInjection.cs`](../src/RetailFlow.Infrastructure/DependencyInjection.cs),
+[`RetailFlow.Infrastructure/DependencyInjection.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Infrastructure/DependencyInjection.cs),
 via `AddRetailFlowInfrastructure(this IHostApplicationBuilder builder)` — called
 identically from both `RetailFlow.Api` and `RetailFlow.Worker`'s `Program.cs`, so
 the two hosts cannot drift out of sync on how they talk to Postgres/RabbitMQ/Redis.
@@ -147,22 +147,22 @@ individual handlers don't have to think about them:
 |---|---|---|
 | Database | 3 retries, exponential backoff (Npgsql `EnableRetryOnFailure`) | Both `RetailFlowDbContext` and `ReportingDbContext` registrations, in `RetailFlow.Infrastructure`/`RetailFlow.Reporting`'s `DependencyInjection.cs` |
 | Message handling | 5 retries, growing cooldown, then Wolverine's error queue | `opts.OnException<Exception>().RetryWithCooldown(...)` in `RetailFlow.Infrastructure/DependencyInjection.cs` |
-| Outbound HTTP to external systems | Retry (3x, exponential) → circuit breaker (50% failure ratio, 30s sampling/break) → 30s timeout | [`HttpClientResilienceExtensions.AddRetailFlowResilience()`](../src/RetailFlow.Infrastructure/Resilience/HttpClientResilienceExtensions.cs) — not yet called anywhere, since no outbound HTTP client (e.g. the Fiscal authority) exists yet |
+| Outbound HTTP to external systems | Retry (3x, exponential) → circuit breaker (50% failure ratio, 30s sampling/break) → 30s timeout | [`HttpClientResilienceExtensions.AddRetailFlowResilience()`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Infrastructure/Resilience/HttpClientResilienceExtensions.cs) — not yet called anywhere, since no outbound HTTP client (e.g. the Fiscal authority) exists yet |
 
 The HTTP pipeline's circuit-breaker behavior is proven against a real (fake-backed)
 `HttpClient`, not just configured, in
-[`RetailFlow.ChaosTests/HttpClientResilienceTests.cs`](../tests/RetailFlow.ChaosTests/HttpClientResilienceTests.cs).
+[`RetailFlow.ChaosTests/HttpClientResilienceTests.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/tests/RetailFlow.ChaosTests/HttpClientResilienceTests.cs).
 
 ## Security
 
 - **AuthN**: JWT bearer tokens issued by Keycloak (realm `retailflow`, client
-  `retailflow-api` — see [`docker/keycloak/realm-export.json`](../docker/keycloak/realm-export.json)).
+  `retailflow-api` — see [`docker/keycloak/realm-export.json`](https://github.com/maraMoreir/retail-flow/blob/dev/docker/keycloak/realm-export.json)).
   `Keycloak:Authority` / `Keycloak:Audience` in configuration point the API's
   `AddJwtBearer()` at it.
 - **AuthZ**: policy-based (`Manager`, `Customer`, `AdminOnly`), backed by realm
   roles. Keycloak puts realm roles inside a nested `realm_access.roles` claim
   rather than individual role claims, so
-  [`KeycloakRoleClaimsTransformation`](../src/RetailFlow.Api/Authentication/KeycloakRoleClaimsTransformation.cs)
+  [`KeycloakRoleClaimsTransformation`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Api/Authentication/KeycloakRoleClaimsTransformation.cs)
   unpacks that into standard `ClaimTypes.Role` claims once per authenticated
   request — without it, `RequireRole()`/`[Authorize(Roles = ...)]` would silently
   never match anything.
@@ -177,17 +177,17 @@ The HTTP pipeline's circuit-breaker behavior is proven against a real (fake-back
   takes over once they do). Every log line is enriched with machine name, thread
   ID, application/environment name, and — inside a request — a correlation ID.
 - **Correlation IDs**:
-  [`CorrelationIdMiddleware`](../src/RetailFlow.Api/Middleware/CorrelationIdMiddleware.cs)
+  [`CorrelationIdMiddleware`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Api/Middleware/CorrelationIdMiddleware.cs)
   reads an inbound `X-Correlation-Id` header (or mints one), echoes it back on the
   response, and pushes it into both Serilog's `LogContext` and
-  [`AmbientCorrelationIdProvider`](../src/RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs)
+  [`AmbientCorrelationIdProvider`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Shared/Correlation/ICorrelationIdProvider.cs)
   (an `AsyncLocal`, readable from anywhere — including deep in domain code that
   has no access to `HttpContext`).
 - **Health checks**: three endpoints with different semantics —
   `/health/live` (is the process up — zero dependency checks, always cheap),
   `/health/ready` (can this instance actually serve traffic — Postgres, RabbitMQ,
   Redis all reachable), `/health` (everything, for manual debugging). See
-  [`Program.cs`](../src/RetailFlow.Api/Program.cs).
+  [`Program.cs`](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Api/Program.cs).
 - **Not yet built**: OpenTelemetry distributed tracing, Prometheus metrics,
   Grafana dashboards — Phase 7 in the original plan.
 
@@ -214,8 +214,8 @@ just test         # or: dotnet test RetailFlow.slnx
 `docker-compose.yml` deliberately does **not** containerize the API/Worker
 themselves — `dotnet run` against the containerized dependencies is a much
 faster inner loop than rebuilding images on every change. `Dockerfile`s for both
-exist ([Api](../src/RetailFlow.Api/Dockerfile),
-[Worker](../src/RetailFlow.Worker/Dockerfile)) for when that changes (Phase 9).
+exist ([Api](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Api/Dockerfile),
+[Worker](https://github.com/maraMoreir/retail-flow/blob/dev/src/RetailFlow.Worker/Dockerfile)) for when that changes (Phase 9).
 
 To get a bearer token for local testing (demo users seeded by the realm export:
 `admin.demo` / `customer.demo`, password `retailflow-dev` for both):
@@ -233,10 +233,10 @@ Seq's UI is at `http://localhost:8081`, RabbitMQ's management UI at
 ## Status: what's real vs. planned
 
 Everything above this line describes code that exists, builds, and is tested —
-see [`RetailFlow.IntegrationTests`](../tests/RetailFlow.IntegrationTests) for the
+see [`RetailFlow.IntegrationTests`](https://github.com/maraMoreir/retail-flow/blob/dev/tests/RetailFlow.IntegrationTests) for the
 end-to-end infrastructure proof (it boots the real API host against real,
 disposable Postgres/RabbitMQ/Redis containers), and
-[`RetailFlow.ChaosTests`](../tests/RetailFlow.ChaosTests) for the resilience
+[`RetailFlow.ChaosTests`](https://github.com/maraMoreir/retail-flow/blob/dev/tests/RetailFlow.ChaosTests) for the resilience
 policies. What's explicitly **not** built yet:
 
 - Bounded-context aggregates and their behavior (no `Sale`, `Product`, etc. —
