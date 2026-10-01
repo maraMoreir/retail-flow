@@ -27,12 +27,13 @@ would actually expect in production, documented well enough that someone else
 could pick it up and keep building.
 
 **Current status**: Phase 2 (Architecture & Domain Design) — see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#status-whats-real-vs-planned)
-for exactly what's real vs. planned. Short version: the architecture, messaging,
-security, resilience policies, and testing scaffolding all exist and are
-verified end-to-end; the domain event contracts and shared value objects that
-define each bounded context's vocabulary now exist too. The actual business
-logic (Sales, Inventory, Fiscal, Notification aggregates, the create-sale saga)
-hasn't been built yet — that's Phase 3.
+for the design and planned state. This branch contains the documentation, but not the
+referenced source, test, project, or infrastructure files. The architecture,
+messaging, security, resilience policies, testing scaffolding, domain event contracts,
+and shared value objects described there are design documentation, not code present or
+verified in this checkout. Saga and projection mechanisms are also design-only; no
+business logic has been implemented, and this checkout makes no claim that the code
+builds or has been tested.
 
 ---
 
