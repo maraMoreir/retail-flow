@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    CQRS read model: queries only, no commands, no writes. Deliberately does NOT
+    reference RetailFlow.Domain - it reads its own denormalized projections through
+    a read-only EF Core context, never the write-side aggregates.
+  -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RetailFlow.Shared\RetailFlow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

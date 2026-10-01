@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="NetArchTest.Rules" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- References every layer so it can assert the dependency graph between them. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RetailFlow.Domain\RetailFlow.Domain.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Application\RetailFlow.Application.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Infrastructure\RetailFlow.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Reporting\RetailFlow.Reporting.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Shared\RetailFlow.Shared.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Api\RetailFlow.Api.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Worker\RetailFlow.Worker.csproj" />
+  </ItemGroup>
+
+</Project>

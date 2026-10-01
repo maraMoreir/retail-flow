@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Cross-cutting concerns with no business meaning of their own: correlation IDs,
+    clock abstraction, result/error types, guard clauses. Domain stays dependency-free
+    (see RetailFlow.Domain.csproj); every other layer may depend on Shared.
+  -->
+
+</Project>

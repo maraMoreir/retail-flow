@@ -1,0 +1,12 @@
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <!-- CA1707: xUnit's Method_Scenario_Expected underscore convention is
+         deliberate and far more readable in a test explorer than PascalCase run
+         together - this rule is meant for public production APIs, not test names. -->
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
+  </PropertyGroup>
+
+</Project>

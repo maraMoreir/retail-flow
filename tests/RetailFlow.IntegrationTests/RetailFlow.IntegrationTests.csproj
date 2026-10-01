@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
+    <PackageReference Include="Testcontainers.RabbitMq" />
+    <PackageReference Include="Testcontainers.Redis" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RetailFlow.Api\RetailFlow.Api.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Infrastructure\RetailFlow.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Application\RetailFlow.Application.csproj" />
+    <ProjectReference Include="..\..\src\RetailFlow.Shared\RetailFlow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

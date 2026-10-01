@@ -1,3 +1,49 @@
+## .NET
+bin/
+obj/
+out/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+## Test results / coverage
+[Tt]est[Rr]esult*/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.trx
+*.coverage
+*.coveragexml
+BenchmarkDotNet.Artifacts/
+
+## Rider / VS / VS Code
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.DotSettings.user
+
+## User secrets / local config
+appsettings.*.local.json
+*.local.json
+.env
+.env.*
+
+## Docker / local data volumes
+docker/data/
+docker/**/data/
+
+## Logs
+logs/
+*.log
+
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
 ## draw.io
 .$*.drawio.bkp
 .$*.drawio.dtmp

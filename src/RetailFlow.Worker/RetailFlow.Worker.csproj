@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <UserSecretsId>dotnet-RetailFlow.Worker-0894ed75-6b4a-4a9d-a73b-88f11fc34675</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="WolverineFx" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Enrichers.Thread" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RetailFlow.Application\RetailFlow.Application.csproj" />
+    <ProjectReference Include="..\RetailFlow.Infrastructure\RetailFlow.Infrastructure.csproj" />
+    <ProjectReference Include="..\RetailFlow.Shared\RetailFlow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
