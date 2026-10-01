@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore
+
+      # Release, not Debug: Directory.Build.props turns on TreatWarningsAsErrors
+      # only in Release, so this is where a new warning actually fails the build.
+      - name: Build (Release)
+        run: dotnet build --no-restore -c Release
+
+      # RetailFlow.IntegrationTests spins up real Postgres/RabbitMQ/Redis via
+      # Testcontainers rather than relying on GitHub Actions `services:` containers -
+      # ubuntu-latest ships Docker already, so this needs no extra setup here.
+      # RetailFlow.PerformanceTests (a BenchmarkDotNet console app, not an xUnit
+      # project) is correctly skipped by `dotnet test` on its own.
+      - name: Test
+        run: >
+          dotnet test RetailFlow.slnx --no-build -c Release
+          --logger "trx;LogFileName=test-results.trx"
+          --results-directory ./TestResults
+
+      - name: Publish test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./TestResults

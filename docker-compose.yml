@@ -1,0 +1,88 @@
+name: retailflow
+
+# Local development dependencies only. RetailFlow.Api and RetailFlow.Worker are
+# NOT containerized here on purpose - `dotnet run` against these gives a much
+# faster inner loop than rebuilding images on every change. Containerizing the
+# hosts themselves is a Phase 9 (deployment) concern; see src/RetailFlow.Api/Dockerfile
+# and src/RetailFlow.Worker/Dockerfile, written but unused by this file for now.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: retailflow
+      POSTGRES_PASSWORD: retailflow
+      POSTGRES_DB: retailflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U retailflow -d retailflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # management UI: http://localhost:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  seq:
+    image: datalust/seq:latest
+    environment:
+      ACCEPT_EULA: "Y"
+    ports:
+      - "5341:5341" # ingestion (matches Seq:ServerUrl in appsettings.json)
+      - "8081:80"    # UI: http://localhost:8081 (kept off 80/8080 - Keycloak below uses 8080)
+    volumes:
+      - seq_data:/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080" # admin console + realm issuer: http://localhost:8080
+    volumes:
+      - ./docker/keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+      - keycloak_data:/opt/keycloak/data
+    healthcheck:
+      # start-dev has no /health endpoint exposed by default without the health
+      # feature flag - fall back to checking the realm's OIDC discovery document.
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/localhost/8080 && echo -e 'GET /realms/retailflow/.well-known/openid-configuration HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+  redis_data:
+  seq_data:
+  keycloak_data:

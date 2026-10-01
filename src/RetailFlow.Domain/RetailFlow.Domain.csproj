@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Domain layer is the innermost circle of Clean Architecture: it has ZERO
+    dependencies on any other project or external package. It contains only
+    entities, value objects, aggregates, domain events, and repository interfaces.
+    RetailFlow.ArchitectureTests enforces this rule at build/test time.
+  -->
+
+</Project>

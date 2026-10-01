@@ -1,0 +1,62 @@
+{
+  "realm": "retailflow",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "roles": {
+    "realm": [
+      { "name": "admin", "description": "Full administrative access - AdminOnly policy" },
+      { "name": "manager", "description": "Store manager - Manager policy (inventory, approvals)" },
+      { "name": "customer", "description": "Storefront customer - Customer policy" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "retailflow-api",
+      "name": "RetailFlow API",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "retailflow-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "retailflow-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin.demo",
+      "email": "admin.demo@retailflow.local",
+      "firstName": "Admin",
+      "lastName": "Demo",
+      "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
+      "credentials": [{ "type": "password", "value": "retailflow-dev", "temporary": false }],
+      "realmRoles": ["admin", "manager"]
+    },
+    {
+      "username": "customer.demo",
+      "email": "customer.demo@retailflow.local",
+      "firstName": "Customer",
+      "lastName": "Demo",
+      "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
+      "credentials": [{ "type": "password", "value": "retailflow-dev", "temporary": false }],
+      "realmRoles": ["customer"]
+    }
+  ]
+}
